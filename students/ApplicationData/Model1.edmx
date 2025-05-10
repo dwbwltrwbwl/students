@@ -1,0 +1,1063 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище studentsModel" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="attendance">
+          <Key>
+            <PropertyRef Name="id_attendance" />
+          </Key>
+          <Property Name="id_attendance" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_enrollment" Type="int" />
+          <Property Name="date" Type="date" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="classrooms">
+          <Key>
+            <PropertyRef Name="id_classroom" />
+          </Key>
+          <Property Name="id_classroom" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="classroom_number" Type="int" />
+          <Property Name="capacity" Type="int" />
+        </EntityType>
+        <EntityType Name="courses">
+          <Key>
+            <PropertyRef Name="id_course" />
+          </Key>
+          <Property Name="id_course" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="course_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="course_description" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_semester" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="degrees">
+          <Key>
+            <PropertyRef Name="id_degree" />
+          </Key>
+          <Property Name="id_degree" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="degree_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="degree_description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="enrollments">
+          <Key>
+            <PropertyRef Name="id_enrollment" />
+          </Key>
+          <Property Name="id_enrollment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_student" Type="int" />
+          <Property Name="id_course" Type="int" />
+          <Property Name="enrollment_date" Type="date" />
+          <Property Name="status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="id_feedback" />
+          </Key>
+          <Property Name="id_feedback" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_student" Type="int" />
+          <Property Name="id_course" Type="int" />
+          <Property Name="feedback_text" Type="nvarchar" MaxLength="255" />
+          <Property Name="feedback_date" Type="date" />
+        </EntityType>
+        <EntityType Name="grades">
+          <Key>
+            <PropertyRef Name="id_grade" />
+          </Key>
+          <Property Name="id_grade" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_enrollment" Type="int" />
+          <Property Name="grade" Type="int" />
+          <Property Name="date_assigned" Type="date" />
+        </EntityType>
+        <EntityType Name="instructors">
+          <Key>
+            <PropertyRef Name="id_instructor" />
+          </Key>
+          <Property Name="id_instructor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="20" />
+          <Property Name="login" Type="nvarchar" MaxLength="100" />
+          <Property Name="password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="majors">
+          <Key>
+            <PropertyRef Name="id_major" />
+          </Key>
+          <Property Name="id_major" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="major_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="id_degree" Type="int" />
+        </EntityType>
+        <EntityType Name="organization_memberships">
+          <Key>
+            <PropertyRef Name="id_membership" />
+          </Key>
+          <Property Name="id_membership" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_student" Type="int" />
+          <Property Name="id_organization" Type="int" />
+          <Property Name="join_date" Type="date" />
+        </EntityType>
+        <EntityType Name="schedules">
+          <Key>
+            <PropertyRef Name="id_schedule" />
+          </Key>
+          <Property Name="id_schedule" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_course" Type="int" />
+          <Property Name="id_classroom" Type="int" />
+          <Property Name="id_instructor" Type="int" />
+          <Property Name="start_time" Type="datetime" />
+          <Property Name="end_time" Type="datetime" />
+          <Property Name="day_of_week" Type="nvarchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="semesters">
+          <Key>
+            <PropertyRef Name="id_semester" />
+          </Key>
+          <Property Name="id_semester" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="semester_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="start_date" Type="date" />
+          <Property Name="end_date" Type="date" />
+        </EntityType>
+        <EntityType Name="student_organizations">
+          <Key>
+            <PropertyRef Name="id_organization" />
+          </Key>
+          <Property Name="id_organization" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="organization_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="description" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_student" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="first_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="last_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="date_of_birth" Type="date" />
+          <Property Name="email" Type="nvarchar" MaxLength="255" />
+          <Property Name="telephone" Type="nvarchar" MaxLength="20" />
+          <Property Name="enrollment_date" Type="date" />
+          <Property Name="id_major" Type="int" />
+        </EntityType>
+        <EntityType Name="subjects">
+          <Key>
+            <PropertyRef Name="id_subject" />
+          </Key>
+          <Property Name="id_subject" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="subject_name" Type="nvarchar" MaxLength="100" />
+          <Property Name="subject_description" Type="nvarchar" MaxLength="255" />
+          <Property Name="id_course" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK_attendance_enrollments">
+          <End Role="enrollments" Type="Self.enrollments" Multiplicity="0..1" />
+          <End Role="attendance" Type="Self.attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enrollments">
+              <PropertyRef Name="id_enrollment" />
+            </Principal>
+            <Dependent Role="attendance">
+              <PropertyRef Name="id_enrollment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_courses_semesters1">
+          <End Role="semesters" Type="Self.semesters" Multiplicity="1" />
+          <End Role="courses" Type="Self.courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semesters">
+              <PropertyRef Name="id_semester" />
+            </Principal>
+            <Dependent Role="courses">
+              <PropertyRef Name="id_semester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enrollments_courses">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="enrollments" Type="Self.enrollments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="id_course" />
+            </Principal>
+            <Dependent Role="enrollments">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enrollments_students">
+          <End Role="students" Type="Self.students" Multiplicity="0..1" />
+          <End Role="enrollments" Type="Self.enrollments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="id_student" />
+            </Principal>
+            <Dependent Role="enrollments">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_courses">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="id_course" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_students">
+          <End Role="students" Type="Self.students" Multiplicity="0..1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="id_student" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_grades_enrollments">
+          <End Role="enrollments" Type="Self.enrollments" Multiplicity="0..1" />
+          <End Role="grades" Type="Self.grades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enrollments">
+              <PropertyRef Name="id_enrollment" />
+            </Principal>
+            <Dependent Role="grades">
+              <PropertyRef Name="id_enrollment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_majors_degrees">
+          <End Role="degrees" Type="Self.degrees" Multiplicity="1" />
+          <End Role="majors" Type="Self.majors" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="degrees">
+              <PropertyRef Name="id_degree" />
+            </Principal>
+            <Dependent Role="majors">
+              <PropertyRef Name="id_major" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_organization_memberships_student_organizations">
+          <End Role="student_organizations" Type="Self.student_organizations" Multiplicity="0..1" />
+          <End Role="organization_memberships" Type="Self.organization_memberships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student_organizations">
+              <PropertyRef Name="id_organization" />
+            </Principal>
+            <Dependent Role="organization_memberships">
+              <PropertyRef Name="id_organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_organization_memberships_students">
+          <End Role="students" Type="Self.students" Multiplicity="0..1" />
+          <End Role="organization_memberships" Type="Self.organization_memberships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="id_student" />
+            </Principal>
+            <Dependent Role="organization_memberships">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedules_classrooms">
+          <End Role="classrooms" Type="Self.classrooms" Multiplicity="0..1" />
+          <End Role="schedules" Type="Self.schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classrooms">
+              <PropertyRef Name="id_classroom" />
+            </Principal>
+            <Dependent Role="schedules">
+              <PropertyRef Name="id_classroom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedules_courses">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="schedules" Type="Self.schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="id_course" />
+            </Principal>
+            <Dependent Role="schedules">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedules_instructors">
+          <End Role="instructors" Type="Self.instructors" Multiplicity="0..1" />
+          <End Role="schedules" Type="Self.schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="instructors">
+              <PropertyRef Name="id_instructor" />
+            </Principal>
+            <Dependent Role="schedules">
+              <PropertyRef Name="id_instructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students_majors">
+          <End Role="majors" Type="Self.majors" Multiplicity="0..1" />
+          <End Role="students" Type="Self.students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="majors">
+              <PropertyRef Name="id_major" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="id_major" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_subjects_courses">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="subjects" Type="Self.subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="id_course" />
+            </Principal>
+            <Dependent Role="subjects">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище studentsModelContainer">
+          <EntitySet Name="attendance" EntityType="Self.attendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="classrooms" EntityType="Self.classrooms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="courses" EntityType="Self.courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="degrees" EntityType="Self.degrees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="enrollments" EntityType="Self.enrollments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="feedback" EntityType="Self.feedback" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="grades" EntityType="Self.grades" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="instructors" EntityType="Self.instructors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="majors" EntityType="Self.majors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="organization_memberships" EntityType="Self.organization_memberships" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="schedules" EntityType="Self.schedules" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="semesters" EntityType="Self.semesters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="student_organizations" EntityType="Self.student_organizations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="students" EntityType="Self.students" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="subjects" EntityType="Self.subjects" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_attendance_enrollments" Association="Self.FK_attendance_enrollments">
+            <End Role="enrollments" EntitySet="enrollments" />
+            <End Role="attendance" EntitySet="attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_courses_semesters1" Association="Self.FK_courses_semesters1">
+            <End Role="semesters" EntitySet="semesters" />
+            <End Role="courses" EntitySet="courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enrollments_courses" Association="Self.FK_enrollments_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="enrollments" EntitySet="enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enrollments_students" Association="Self.FK_enrollments_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="enrollments" EntitySet="enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_courses" Association="Self.FK_feedback_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_students" Association="Self.FK_feedback_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_grades_enrollments" Association="Self.FK_grades_enrollments">
+            <End Role="enrollments" EntitySet="enrollments" />
+            <End Role="grades" EntitySet="grades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_majors_degrees" Association="Self.FK_majors_degrees">
+            <End Role="degrees" EntitySet="degrees" />
+            <End Role="majors" EntitySet="majors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_organization_memberships_student_organizations" Association="Self.FK_organization_memberships_student_organizations">
+            <End Role="student_organizations" EntitySet="student_organizations" />
+            <End Role="organization_memberships" EntitySet="organization_memberships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_organization_memberships_students" Association="Self.FK_organization_memberships_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="organization_memberships" EntitySet="organization_memberships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedules_classrooms" Association="Self.FK_schedules_classrooms">
+            <End Role="classrooms" EntitySet="classrooms" />
+            <End Role="schedules" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedules_courses" Association="Self.FK_schedules_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="schedules" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedules_instructors" Association="Self.FK_schedules_instructors">
+            <End Role="instructors" EntitySet="instructors" />
+            <End Role="schedules" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students_majors" Association="Self.FK_students_majors">
+            <End Role="majors" EntitySet="majors" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_subjects_courses" Association="Self.FK_subjects_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="subjects" EntitySet="subjects" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="studentsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="attendance">
+          <Key>
+            <PropertyRef Name="id_attendance" />
+          </Key>
+          <Property Name="id_attendance" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_enrollment" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="enrollments" Relationship="Self.FK_attendance_enrollments" FromRole="attendance" ToRole="enrollments" />
+        </EntityType>
+        <EntityType Name="classrooms">
+          <Key>
+            <PropertyRef Name="id_classroom" />
+          </Key>
+          <Property Name="id_classroom" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="classroom_number" Type="Int32" />
+          <Property Name="capacity" Type="Int32" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK_schedules_classrooms" FromRole="classrooms" ToRole="schedules" />
+        </EntityType>
+        <EntityType Name="courses">
+          <Key>
+            <PropertyRef Name="id_course" />
+          </Key>
+          <Property Name="id_course" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="course_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="course_description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_semester" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="semesters" Relationship="Self.FK_courses_semesters1" FromRole="courses" ToRole="semesters" />
+          <NavigationProperty Name="enrollments" Relationship="Self.FK_enrollments_courses" FromRole="courses" ToRole="enrollments" />
+          <NavigationProperty Name="feedback" Relationship="Self.FK_feedback_courses" FromRole="courses" ToRole="feedback" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK_schedules_courses" FromRole="courses" ToRole="schedules" />
+          <NavigationProperty Name="subjects" Relationship="Self.FK_subjects_courses" FromRole="courses" ToRole="subjects" />
+        </EntityType>
+        <EntityType Name="degrees">
+          <Key>
+            <PropertyRef Name="id_degree" />
+          </Key>
+          <Property Name="id_degree" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="degree_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="degree_description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="majors" Relationship="Self.FK_majors_degrees" FromRole="degrees" ToRole="majors" />
+        </EntityType>
+        <EntityType Name="enrollments">
+          <Key>
+            <PropertyRef Name="id_enrollment" />
+          </Key>
+          <Property Name="id_enrollment" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_student" Type="Int32" />
+          <Property Name="id_course" Type="Int32" />
+          <Property Name="enrollment_date" Type="DateTime" Precision="0" />
+          <Property Name="status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="attendance" Relationship="Self.FK_attendance_enrollments" FromRole="enrollments" ToRole="attendance" />
+          <NavigationProperty Name="courses" Relationship="Self.FK_enrollments_courses" FromRole="enrollments" ToRole="courses" />
+          <NavigationProperty Name="students" Relationship="Self.FK_enrollments_students" FromRole="enrollments" ToRole="students" />
+          <NavigationProperty Name="grades" Relationship="Self.FK_grades_enrollments" FromRole="enrollments" ToRole="grades" />
+        </EntityType>
+        <EntityType Name="feedback">
+          <Key>
+            <PropertyRef Name="id_feedback" />
+          </Key>
+          <Property Name="id_feedback" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_student" Type="Int32" />
+          <Property Name="id_course" Type="Int32" />
+          <Property Name="feedback_text" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="feedback_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="courses" Relationship="Self.FK_feedback_courses" FromRole="feedback" ToRole="courses" />
+          <NavigationProperty Name="students" Relationship="Self.FK_feedback_students" FromRole="feedback" ToRole="students" />
+        </EntityType>
+        <EntityType Name="grades">
+          <Key>
+            <PropertyRef Name="id_grade" />
+          </Key>
+          <Property Name="id_grade" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_enrollment" Type="Int32" />
+          <Property Name="grade" Type="Int32" />
+          <Property Name="date_assigned" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="enrollments" Relationship="Self.FK_grades_enrollments" FromRole="grades" ToRole="enrollments" />
+        </EntityType>
+        <EntityType Name="instructors">
+          <Key>
+            <PropertyRef Name="id_instructor" />
+          </Key>
+          <Property Name="id_instructor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="login" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="schedules" Relationship="Self.FK_schedules_instructors" FromRole="instructors" ToRole="schedules" />
+        </EntityType>
+        <EntityType Name="majors">
+          <Key>
+            <PropertyRef Name="id_major" />
+          </Key>
+          <Property Name="id_major" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="major_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="id_degree" Type="Int32" />
+          <NavigationProperty Name="degrees" Relationship="Self.FK_majors_degrees" FromRole="majors" ToRole="degrees" />
+          <NavigationProperty Name="students" Relationship="Self.FK_students_majors" FromRole="majors" ToRole="students" />
+        </EntityType>
+        <EntityType Name="organization_memberships">
+          <Key>
+            <PropertyRef Name="id_membership" />
+          </Key>
+          <Property Name="id_membership" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_student" Type="Int32" />
+          <Property Name="id_organization" Type="Int32" />
+          <Property Name="join_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="student_organizations" Relationship="Self.FK_organization_memberships_student_organizations" FromRole="organization_memberships" ToRole="student_organizations" />
+          <NavigationProperty Name="students" Relationship="Self.FK_organization_memberships_students" FromRole="organization_memberships" ToRole="students" />
+        </EntityType>
+        <EntityType Name="schedules">
+          <Key>
+            <PropertyRef Name="id_schedule" />
+          </Key>
+          <Property Name="id_schedule" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_course" Type="Int32" />
+          <Property Name="id_classroom" Type="Int32" />
+          <Property Name="id_instructor" Type="Int32" />
+          <Property Name="start_time" Type="DateTime" Precision="3" />
+          <Property Name="end_time" Type="DateTime" Precision="3" />
+          <Property Name="day_of_week" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="classrooms" Relationship="Self.FK_schedules_classrooms" FromRole="schedules" ToRole="classrooms" />
+          <NavigationProperty Name="courses" Relationship="Self.FK_schedules_courses" FromRole="schedules" ToRole="courses" />
+          <NavigationProperty Name="instructors" Relationship="Self.FK_schedules_instructors" FromRole="schedules" ToRole="instructors" />
+        </EntityType>
+        <EntityType Name="semesters">
+          <Key>
+            <PropertyRef Name="id_semester" />
+          </Key>
+          <Property Name="id_semester" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="semester_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="start_date" Type="DateTime" Precision="0" />
+          <Property Name="end_date" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="courses" Relationship="Self.FK_courses_semesters1" FromRole="semesters" ToRole="courses" />
+        </EntityType>
+        <EntityType Name="student_organizations">
+          <Key>
+            <PropertyRef Name="id_organization" />
+          </Key>
+          <Property Name="id_organization" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="organization_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="organization_memberships" Relationship="Self.FK_organization_memberships_student_organizations" FromRole="student_organizations" ToRole="organization_memberships" />
+        </EntityType>
+        <EntityType Name="students">
+          <Key>
+            <PropertyRef Name="id_student" />
+          </Key>
+          <Property Name="id_student" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="first_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="last_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="date_of_birth" Type="DateTime" Precision="0" />
+          <Property Name="email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="telephone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="enrollment_date" Type="DateTime" Precision="0" />
+          <Property Name="id_major" Type="Int32" />
+          <NavigationProperty Name="enrollments" Relationship="Self.FK_enrollments_students" FromRole="students" ToRole="enrollments" />
+          <NavigationProperty Name="feedback" Relationship="Self.FK_feedback_students" FromRole="students" ToRole="feedback" />
+          <NavigationProperty Name="majors" Relationship="Self.FK_students_majors" FromRole="students" ToRole="majors" />
+          <NavigationProperty Name="organization_memberships" Relationship="Self.FK_organization_memberships_students" FromRole="students" ToRole="organization_memberships" />
+        </EntityType>
+        <EntityType Name="subjects">
+          <Key>
+            <PropertyRef Name="id_subject" />
+          </Key>
+          <Property Name="id_subject" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="subject_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="subject_description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="id_course" Type="Int32" />
+          <NavigationProperty Name="courses" Relationship="Self.FK_subjects_courses" FromRole="subjects" ToRole="courses" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK_attendance_enrollments">
+          <End Role="enrollments" Type="Self.enrollments" Multiplicity="0..1" />
+          <End Role="attendance" Type="Self.attendance" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enrollments">
+              <PropertyRef Name="id_enrollment" />
+            </Principal>
+            <Dependent Role="attendance">
+              <PropertyRef Name="id_enrollment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedules_classrooms">
+          <End Role="classrooms" Type="Self.classrooms" Multiplicity="0..1" />
+          <End Role="schedules" Type="Self.schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="classrooms">
+              <PropertyRef Name="id_classroom" />
+            </Principal>
+            <Dependent Role="schedules">
+              <PropertyRef Name="id_classroom" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_courses_semesters1">
+          <End Role="semesters" Type="Self.semesters" Multiplicity="1" />
+          <End Role="courses" Type="Self.courses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="semesters">
+              <PropertyRef Name="id_semester" />
+            </Principal>
+            <Dependent Role="courses">
+              <PropertyRef Name="id_semester" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enrollments_courses">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="enrollments" Type="Self.enrollments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="id_course" />
+            </Principal>
+            <Dependent Role="enrollments">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_courses">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="id_course" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedules_courses">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="schedules" Type="Self.schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="id_course" />
+            </Principal>
+            <Dependent Role="schedules">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_subjects_courses">
+          <End Role="courses" Type="Self.courses" Multiplicity="0..1" />
+          <End Role="subjects" Type="Self.subjects" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="courses">
+              <PropertyRef Name="id_course" />
+            </Principal>
+            <Dependent Role="subjects">
+              <PropertyRef Name="id_course" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_majors_degrees">
+          <End Role="degrees" Type="Self.degrees" Multiplicity="1" />
+          <End Role="majors" Type="Self.majors" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="degrees">
+              <PropertyRef Name="id_degree" />
+            </Principal>
+            <Dependent Role="majors">
+              <PropertyRef Name="id_major" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_enrollments_students">
+          <End Role="students" Type="Self.students" Multiplicity="0..1" />
+          <End Role="enrollments" Type="Self.enrollments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="id_student" />
+            </Principal>
+            <Dependent Role="enrollments">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_grades_enrollments">
+          <End Role="enrollments" Type="Self.enrollments" Multiplicity="0..1" />
+          <End Role="grades" Type="Self.grades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="enrollments">
+              <PropertyRef Name="id_enrollment" />
+            </Principal>
+            <Dependent Role="grades">
+              <PropertyRef Name="id_enrollment" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_feedback_students">
+          <End Role="students" Type="Self.students" Multiplicity="0..1" />
+          <End Role="feedback" Type="Self.feedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="id_student" />
+            </Principal>
+            <Dependent Role="feedback">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_schedules_instructors">
+          <End Role="instructors" Type="Self.instructors" Multiplicity="0..1" />
+          <End Role="schedules" Type="Self.schedules" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="instructors">
+              <PropertyRef Name="id_instructor" />
+            </Principal>
+            <Dependent Role="schedules">
+              <PropertyRef Name="id_instructor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_students_majors">
+          <End Role="majors" Type="Self.majors" Multiplicity="0..1" />
+          <End Role="students" Type="Self.students" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="majors">
+              <PropertyRef Name="id_major" />
+            </Principal>
+            <Dependent Role="students">
+              <PropertyRef Name="id_major" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_organization_memberships_student_organizations">
+          <End Role="student_organizations" Type="Self.student_organizations" Multiplicity="0..1" />
+          <End Role="organization_memberships" Type="Self.organization_memberships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="student_organizations">
+              <PropertyRef Name="id_organization" />
+            </Principal>
+            <Dependent Role="organization_memberships">
+              <PropertyRef Name="id_organization" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_organization_memberships_students">
+          <End Role="students" Type="Self.students" Multiplicity="0..1" />
+          <End Role="organization_memberships" Type="Self.organization_memberships" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="students">
+              <PropertyRef Name="id_student" />
+            </Principal>
+            <Dependent Role="organization_memberships">
+              <PropertyRef Name="id_student" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="studentsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="attendance" EntityType="Self.attendance" />
+          <EntitySet Name="classrooms" EntityType="Self.classrooms" />
+          <EntitySet Name="courses" EntityType="Self.courses" />
+          <EntitySet Name="degrees" EntityType="Self.degrees" />
+          <EntitySet Name="enrollments" EntityType="Self.enrollments" />
+          <EntitySet Name="feedback" EntityType="Self.feedback" />
+          <EntitySet Name="grades" EntityType="Self.grades" />
+          <EntitySet Name="instructors" EntityType="Self.instructors" />
+          <EntitySet Name="majors" EntityType="Self.majors" />
+          <EntitySet Name="organization_memberships" EntityType="Self.organization_memberships" />
+          <EntitySet Name="schedules" EntityType="Self.schedules" />
+          <EntitySet Name="semesters" EntityType="Self.semesters" />
+          <EntitySet Name="student_organizations" EntityType="Self.student_organizations" />
+          <EntitySet Name="students" EntityType="Self.students" />
+          <EntitySet Name="subjects" EntityType="Self.subjects" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK_attendance_enrollments" Association="Self.FK_attendance_enrollments">
+            <End Role="enrollments" EntitySet="enrollments" />
+            <End Role="attendance" EntitySet="attendance" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedules_classrooms" Association="Self.FK_schedules_classrooms">
+            <End Role="classrooms" EntitySet="classrooms" />
+            <End Role="schedules" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_courses_semesters1" Association="Self.FK_courses_semesters1">
+            <End Role="semesters" EntitySet="semesters" />
+            <End Role="courses" EntitySet="courses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enrollments_courses" Association="Self.FK_enrollments_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="enrollments" EntitySet="enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_courses" Association="Self.FK_feedback_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedules_courses" Association="Self.FK_schedules_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="schedules" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_subjects_courses" Association="Self.FK_subjects_courses">
+            <End Role="courses" EntitySet="courses" />
+            <End Role="subjects" EntitySet="subjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_majors_degrees" Association="Self.FK_majors_degrees">
+            <End Role="degrees" EntitySet="degrees" />
+            <End Role="majors" EntitySet="majors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_enrollments_students" Association="Self.FK_enrollments_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="enrollments" EntitySet="enrollments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_grades_enrollments" Association="Self.FK_grades_enrollments">
+            <End Role="enrollments" EntitySet="enrollments" />
+            <End Role="grades" EntitySet="grades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_feedback_students" Association="Self.FK_feedback_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="feedback" EntitySet="feedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_schedules_instructors" Association="Self.FK_schedules_instructors">
+            <End Role="instructors" EntitySet="instructors" />
+            <End Role="schedules" EntitySet="schedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_students_majors" Association="Self.FK_students_majors">
+            <End Role="majors" EntitySet="majors" />
+            <End Role="students" EntitySet="students" />
+          </AssociationSet>
+          <AssociationSet Name="FK_organization_memberships_student_organizations" Association="Self.FK_organization_memberships_student_organizations">
+            <End Role="student_organizations" EntitySet="student_organizations" />
+            <End Role="organization_memberships" EntitySet="organization_memberships" />
+          </AssociationSet>
+          <AssociationSet Name="FK_organization_memberships_students" Association="Self.FK_organization_memberships_students">
+            <End Role="students" EntitySet="students" />
+            <End Role="organization_memberships" EntitySet="organization_memberships" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище studentsModelContainer" CdmEntityContainer="studentsEntities">
+          <EntitySetMapping Name="attendance">
+            <EntityTypeMapping TypeName="studentsModel.attendance">
+              <MappingFragment StoreEntitySet="attendance">
+                <ScalarProperty Name="id_attendance" ColumnName="id_attendance" />
+                <ScalarProperty Name="id_enrollment" ColumnName="id_enrollment" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="classrooms">
+            <EntityTypeMapping TypeName="studentsModel.classrooms">
+              <MappingFragment StoreEntitySet="classrooms">
+                <ScalarProperty Name="id_classroom" ColumnName="id_classroom" />
+                <ScalarProperty Name="classroom_number" ColumnName="classroom_number" />
+                <ScalarProperty Name="capacity" ColumnName="capacity" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="courses">
+            <EntityTypeMapping TypeName="studentsModel.courses">
+              <MappingFragment StoreEntitySet="courses">
+                <ScalarProperty Name="id_course" ColumnName="id_course" />
+                <ScalarProperty Name="course_name" ColumnName="course_name" />
+                <ScalarProperty Name="course_description" ColumnName="course_description" />
+                <ScalarProperty Name="id_semester" ColumnName="id_semester" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="degrees">
+            <EntityTypeMapping TypeName="studentsModel.degrees">
+              <MappingFragment StoreEntitySet="degrees">
+                <ScalarProperty Name="id_degree" ColumnName="id_degree" />
+                <ScalarProperty Name="degree_name" ColumnName="degree_name" />
+                <ScalarProperty Name="degree_description" ColumnName="degree_description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="enrollments">
+            <EntityTypeMapping TypeName="studentsModel.enrollments">
+              <MappingFragment StoreEntitySet="enrollments">
+                <ScalarProperty Name="id_enrollment" ColumnName="id_enrollment" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="id_course" ColumnName="id_course" />
+                <ScalarProperty Name="enrollment_date" ColumnName="enrollment_date" />
+                <ScalarProperty Name="status" ColumnName="status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="feedback">
+            <EntityTypeMapping TypeName="studentsModel.feedback">
+              <MappingFragment StoreEntitySet="feedback">
+                <ScalarProperty Name="id_feedback" ColumnName="id_feedback" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="id_course" ColumnName="id_course" />
+                <ScalarProperty Name="feedback_text" ColumnName="feedback_text" />
+                <ScalarProperty Name="feedback_date" ColumnName="feedback_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grades">
+            <EntityTypeMapping TypeName="studentsModel.grades">
+              <MappingFragment StoreEntitySet="grades">
+                <ScalarProperty Name="id_grade" ColumnName="id_grade" />
+                <ScalarProperty Name="id_enrollment" ColumnName="id_enrollment" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="date_assigned" ColumnName="date_assigned" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="instructors">
+            <EntityTypeMapping TypeName="studentsModel.instructors">
+              <MappingFragment StoreEntitySet="instructors">
+                <ScalarProperty Name="id_instructor" ColumnName="id_instructor" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="login" ColumnName="login" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="majors">
+            <EntityTypeMapping TypeName="studentsModel.majors">
+              <MappingFragment StoreEntitySet="majors">
+                <ScalarProperty Name="id_major" ColumnName="id_major" />
+                <ScalarProperty Name="major_name" ColumnName="major_name" />
+                <ScalarProperty Name="id_degree" ColumnName="id_degree" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="organization_memberships">
+            <EntityTypeMapping TypeName="studentsModel.organization_memberships">
+              <MappingFragment StoreEntitySet="organization_memberships">
+                <ScalarProperty Name="id_membership" ColumnName="id_membership" />
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="id_organization" ColumnName="id_organization" />
+                <ScalarProperty Name="join_date" ColumnName="join_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="schedules">
+            <EntityTypeMapping TypeName="studentsModel.schedules">
+              <MappingFragment StoreEntitySet="schedules">
+                <ScalarProperty Name="id_schedule" ColumnName="id_schedule" />
+                <ScalarProperty Name="id_course" ColumnName="id_course" />
+                <ScalarProperty Name="id_classroom" ColumnName="id_classroom" />
+                <ScalarProperty Name="id_instructor" ColumnName="id_instructor" />
+                <ScalarProperty Name="start_time" ColumnName="start_time" />
+                <ScalarProperty Name="end_time" ColumnName="end_time" />
+                <ScalarProperty Name="day_of_week" ColumnName="day_of_week" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="semesters">
+            <EntityTypeMapping TypeName="studentsModel.semesters">
+              <MappingFragment StoreEntitySet="semesters">
+                <ScalarProperty Name="id_semester" ColumnName="id_semester" />
+                <ScalarProperty Name="semester_name" ColumnName="semester_name" />
+                <ScalarProperty Name="start_date" ColumnName="start_date" />
+                <ScalarProperty Name="end_date" ColumnName="end_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="student_organizations">
+            <EntityTypeMapping TypeName="studentsModel.student_organizations">
+              <MappingFragment StoreEntitySet="student_organizations">
+                <ScalarProperty Name="id_organization" ColumnName="id_organization" />
+                <ScalarProperty Name="organization_name" ColumnName="organization_name" />
+                <ScalarProperty Name="description" ColumnName="description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="students">
+            <EntityTypeMapping TypeName="studentsModel.students">
+              <MappingFragment StoreEntitySet="students">
+                <ScalarProperty Name="id_student" ColumnName="id_student" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="date_of_birth" ColumnName="date_of_birth" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="telephone" ColumnName="telephone" />
+                <ScalarProperty Name="enrollment_date" ColumnName="enrollment_date" />
+                <ScalarProperty Name="id_major" ColumnName="id_major" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="subjects">
+            <EntityTypeMapping TypeName="studentsModel.subjects">
+              <MappingFragment StoreEntitySet="subjects">
+                <ScalarProperty Name="id_subject" ColumnName="id_subject" />
+                <ScalarProperty Name="subject_name" ColumnName="subject_name" />
+                <ScalarProperty Name="subject_description" ColumnName="subject_description" />
+                <ScalarProperty Name="id_course" ColumnName="id_course" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="studentsModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4083b1cacb1f4fde987241fcb98e4376" Name="Diagram1">
+        <EntityTypeShape EntityType="studentsModel.attendance" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.classrooms" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.courses" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.degrees" Width="1.5" PointX="1.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.enrollments" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.feedback" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.grades" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.instructors" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.majors" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.organization_memberships" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.schedules" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.semesters" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.student_organizations" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.students" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.subjects" Width="1.5" PointX="5.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="studentsModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="studentsModel.FK_attendance_enrollments" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_schedules_classrooms" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_courses_semesters1" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_enrollments_courses" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_feedback_courses" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_schedules_courses" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_subjects_courses" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_majors_degrees" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_enrollments_students" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_grades_enrollments" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_feedback_students" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_schedules_instructors" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_students_majors" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_organization_memberships_student_organizations" ManuallyRouted="false" />
+        <AssociationConnector Association="studentsModel.FK_organization_memberships_students" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

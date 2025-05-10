@@ -23,7 +23,7 @@
         <PasswordBox x:Name="PBPassword" HorizontalAlignment="Left" Margin="335,196,0,0" VerticalAlignment="Top" Width="120" Height="20"/>
         <Button x:Name="ButtonVhod" HorizontalAlignment="Left" Margin="335,221,0,0" VerticalAlignment="Top" Width="120" Content="Войти" Height="20" Click="ButtonVhod_Click"/>
         <Button x:Name="ButtonRegistr" Content="Регистрация" HorizontalAlignment="Left" Margin="335,246,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="ButtonRegistr_Click"/>
-        <TextBlock Margin="335,98,0,0" Text="Авторизация" VerticalAlignment="Top" Width="120" Foreground="#FF0027FF" FontSize="18" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Height="24" FontWeight="Bold"/>
+        <TextBlock Margin="335,78,0,0" Text="Авторизация" VerticalAlignment="Top" Width="120" Foreground="#FF0027FF" FontSize="18" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Height="24" FontWeight="Bold"/>
         <TextBlock HorizontalAlignment="Left" Margin="335,175,0,0" TextWrapping="Wrap" Text="Введите пароль" VerticalAlignment="Top" Width="120" Foreground="#FF2CAB00" Height="16" FontWeight="Bold"/>
 
     </Grid>

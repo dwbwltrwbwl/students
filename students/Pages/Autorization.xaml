@@ -8,23 +8,80 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Autorization">
 
-    <Grid>
-        <TextBox x:Name="TBLogin" HorizontalAlignment="Left" Margin="335,154,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" RenderTransformOrigin="0.5,0.5" Height="20">
-            <TextBox.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleX="0.087"/>
-                    <RotateTransform/>
-                    <TranslateTransform X="-0.001"/>
-                </TransformGroup>
-            </TextBox.RenderTransform>
+    <Grid Background="#f0e3fc">
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="0*"/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Image HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+               Source="/Images/people.png" 
+               Width="332" Height="226" 
+               IsEnabled="False"/>
+        </Grid>
+        <TextBlock Margin="0,31,0,0" Text="Авторизация" VerticalAlignment="Top" Width="184" Foreground="#FF5427D4" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" Height="34" FontWeight="Bold" FontFamily="Gill Sans Ultra Bold"/>
+        <TextBlock HorizontalAlignment="Center" TextWrapping="Wrap" Text="Введите логин" VerticalAlignment="Top" Width="154" Foreground="#FF5427D4" Height="22" FontWeight="Bold" FontFamily="Gill Sans Ultra Bold" FontSize="14"  Margin="0,67,0,0"/>
+        <TextBox x:Name="TBLogin" HorizontalAlignment="Center" Margin="0,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="170" Height="22" FontSize="16">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border Background="White" BorderBrush="#FF5427D4" BorderThickness="1" CornerRadius="10">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TextBox.Style>
         </TextBox>
-        <TextBlock HorizontalAlignment="Left" Margin="335,136,0,0" TextWrapping="Wrap" Text="Введите логин" VerticalAlignment="Top" Width="120" Foreground="#FF2CAB00" Height="16" FontWeight="Bold"/>
-        <PasswordBox x:Name="PBPassword" HorizontalAlignment="Left" Margin="335,196,0,0" VerticalAlignment="Top" Width="120" Height="20"/>
-        <Button x:Name="ButtonVhod" HorizontalAlignment="Left" Margin="335,221,0,0" VerticalAlignment="Top" Width="120" Content="Войти" Height="20" Click="ButtonVhod_Click"/>
-        <Button x:Name="ButtonRegistr" Content="Регистрация" HorizontalAlignment="Left" Margin="335,246,0,0" VerticalAlignment="Top" Width="120" Height="20" Click="ButtonRegistr_Click"/>
-        <TextBlock Margin="335,78,0,0" Text="Авторизация" VerticalAlignment="Top" Width="120" Foreground="#FF0027FF" FontSize="18" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Center" Height="24" FontWeight="Bold"/>
-        <TextBlock HorizontalAlignment="Left" Margin="335,175,0,0" TextWrapping="Wrap" Text="Введите пароль" VerticalAlignment="Top" Width="120" Foreground="#FF2CAB00" Height="16" FontWeight="Bold"/>
-
+        <TextBlock HorizontalAlignment="Center" Margin="0,110,10,0" TextWrapping="Wrap" Text="Введите пароль" VerticalAlignment="Top" Width="144" Foreground="#FF5427D4" Height="24" FontWeight="Bold" FontFamily="Gill Sans Ultra Bold" FontSize="14"/>
+        <PasswordBox x:Name="PBPassword" HorizontalAlignment="Center" Margin="0,130,0,0" VerticalAlignment="Top" Width="170" Height="22" FontSize="16">
+            <PasswordBox.Style>
+                <Style TargetType="PasswordBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="PasswordBox">
+                                <Border Background="White" BorderBrush="#FF5427D4" BorderThickness="1" CornerRadius="10">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </PasswordBox.Style>
+        </PasswordBox>
+        <Button x:Name="ButtonVhod" HorizontalAlignment="Center" Margin="0,160,0,0" VerticalAlignment="Top"  Width="170" Height="30" Content="Войти" Click="ButtonVhod_Click" FontFamily="Gill Sans Ultra Bold" FontSize="14" Foreground="White" Background="#FF5427D4">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="#FF5427D4" BorderThickness="1" CornerRadius="10" Padding="5">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="ButtonRegistr" Content="Регистрация" HorizontalAlignment="Center" Margin="0,195,0,0" VerticalAlignment="Top" Width="170" Height="30" Click="ButtonRegistr_Click" FontFamily="Gill Sans Ultra Bold" FontSize="14" Foreground="White" Background="#FF5427D4">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" BorderBrush="#FF5427D4" BorderThickness="1" CornerRadius="10" Padding="5">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Page>

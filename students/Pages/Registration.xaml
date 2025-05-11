@@ -1,0 +1,207 @@
+﻿<Page x:Class="students.Pages.Registration"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:students.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Registration">
+
+    <Grid Background="#f0e3fc">
+        <Grid>
+            <Image HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+               Source="/Images/girlandboy.png" 
+               Width="332" Height="226" 
+               IsEnabled="False" Margin="0,0,122,-1"/>
+        </Grid>
+        <TextBlock HorizontalAlignment="Center" Margin="0,70,330,0" TextWrapping="Wrap" Text="Введите имя:" VerticalAlignment="Top" Foreground="#FF5427D4" FontWeight="Bold" FontSize="14" FontFamily="Gill Sans Ultra Bold"/>
+        <TextBlock HorizontalAlignment="Center" Margin="200,120,0,0" TextWrapping="Wrap" Text="Введите пароль:" VerticalAlignment="Top" Foreground="#FF5427D4" FontWeight="Bold" FontFamily="Gill Sans Ultra Bold" FontSize="14"/>
+        <PasswordBox x:Name="PBpassword" 
+             HorizontalAlignment="Left" 
+             Margin="425,191,0,0" 
+             VerticalAlignment="Top" 
+             Width="200" 
+             Height="22"
+             PasswordChanged="PasswordBox_PasswordChanged">
+            <PasswordBox.Style>
+                <Style TargetType="PasswordBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="PasswordBox">
+                                <Border Background="White" 
+                                BorderBrush="#FF5427D4" 
+                                BorderThickness="1" 
+                                CornerRadius="10">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </PasswordBox.Style>
+        </PasswordBox>
+        <TextBlock HorizontalAlignment="Left" Margin="425,169,0,0" TextWrapping="Wrap" Text="Введите пароль повторно:" VerticalAlignment="Top" Foreground="#FF5427D4" FontWeight="Bold" FontFamily="Gill Sans Ultra Bold" FontSize="14"/>
+        <TextBlock Margin="0,31,0,0" Text="Регистрация" VerticalAlignment="Top" Width="145" Foreground="#FF5427D4" FontSize="20" HorizontalAlignment="Center" TextWrapping="Wrap" TextAlignment="Center" Height="24" FontWeight="Bold" FontFamily="Gill Sans Ultra Bold"/>
+        <TextBox x:Name="TBPassword" 
+         HorizontalAlignment="Left" 
+         Margin="425,142,0,0" 
+         TextWrapping="Wrap" 
+         VerticalAlignment="Top" 
+         Width="200" 
+         Height="22">
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TextBox">
+                                <Border Background="White" 
+                                BorderBrush="#FF5427D4" 
+                                BorderThickness="1" 
+                                CornerRadius="10">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBox x:Name="TBName" 
+            HorizontalAlignment="Center" Margin="0,93,250,0" 
+            TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="22" FontSize="16">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <Border Background="White" 
+                                    BorderBrush="#FF5427D4" BorderThickness="1" CornerRadius="10">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Center" Margin="0,120,290,0" TextWrapping="Wrap" Text="Введите фамилию:" VerticalAlignment="Top" Foreground="#FF5427D4" FontWeight="Bold" FontSize="14" FontFamily="Gill Sans Ultra Bold"/>
+        <TextBox x:Name="TBSurname" 
+            HorizontalAlignment="Left" Margin="185,142,0,0" 
+            TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="22" FontSize="16">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <Border Background="White" 
+                                    BorderBrush="#FF5427D4" BorderThickness="1" CornerRadius="10">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="187,169,0,0" TextWrapping="Wrap" Text="Введите эл. почту:" VerticalAlignment="Top" Foreground="#FF5427D4" FontWeight="Bold" FontSize="14" FontFamily="Gill Sans Ultra Bold"/>
+        <TextBox x:Name="TBEmail" 
+            HorizontalAlignment="Left" Margin="185,191,0,0" 
+            TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="22" FontSize="16">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <Border Background="White" 
+                                    BorderBrush="#FF5427D4" BorderThickness="1" CornerRadius="10">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <TextBlock HorizontalAlignment="Left" Margin="187,219,0,0" TextWrapping="Wrap" Text="Введите номер телефона:" VerticalAlignment="Top" Foreground="#FF5427D4" FontWeight="Bold" FontSize="14" FontFamily="Gill Sans Ultra Bold"/>
+        <TextBox x:Name="TBTelephone" 
+            HorizontalAlignment="Left" Margin="185,241,0,0" 
+            TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="22" FontSize="16">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <Border Background="White" 
+                                    BorderBrush="#FF5427D4" BorderThickness="1" CornerRadius="10">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+        <Button x:Name="ButtonZareg" HorizontalAlignment="Left" Margin="187,268,0,0" 
+            VerticalAlignment="Top"  Width="200" Height="30" Content="Зарегистрироваться" 
+            Click="ButtonRegist_Click" FontFamily="Gill Sans Ultra Bold" 
+            FontSize="14" Foreground="White" Background="#FF5427D4">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="#FF5427D4" 
+                                    BorderThickness="1" CornerRadius="10" Padding="5">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <Button x:Name="ButtonExit" HorizontalAlignment="Left" Margin="187,303,0,0" 
+            VerticalAlignment="Top"  Width="200" Height="30" Content="Выйти" 
+            Click="ButtonExit_Click" FontFamily="Gill Sans Ultra Bold" 
+            FontSize="14" Foreground="White" Background="#FF5427D4">
+            <Button.Style>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type Button}">
+                                <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="#FF5427D4" 
+                                    BorderThickness="1" CornerRadius="10" Padding="5">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                        VerticalAlignment="Center"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </Button.Style>
+        </Button>
+        <TextBlock HorizontalAlignment="Center" Margin="190,70,0,0" TextWrapping="Wrap" Text="Введите логин:" VerticalAlignment="Top" Foreground="#FF5427D4" FontWeight="Bold" FontFamily="Gill Sans Ultra Bold" FontSize="14"/>
+        <TextBox x:Name="TBLogin" 
+            HorizontalAlignment="Center" Margin="260,93,0,0" 
+            TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Height="22" FontSize="16">
+            <TextBox.Style>
+                <Style TargetType="{x:Type TextBox}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type TextBox}">
+                                <Border Background="White" 
+                                    BorderBrush="#FF5427D4" BorderThickness="1" CornerRadius="10">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TextBox.Style>
+        </TextBox>
+    </Grid>
+</Page>

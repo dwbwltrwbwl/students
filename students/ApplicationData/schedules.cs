@@ -15,15 +15,14 @@ namespace students.ApplicationData
     public partial class schedules
     {
         public int id_schedule { get; set; }
-        public Nullable<int> id_course { get; set; }
-        public Nullable<int> id_classroom { get; set; }
-        public Nullable<int> id_instructor { get; set; }
-        public Nullable<System.DateTime> start_time { get; set; }
-        public Nullable<System.DateTime> end_time { get; set; }
-        public string day_of_week { get; set; }
+        public int id_group { get; set; }
+        public int id_subject { get; set; }
+        public int id_day { get; set; }
+        public System.TimeSpan start_time { get; set; }
+        public System.TimeSpan end_time { get; set; }
     
-        public virtual classrooms classrooms { get; set; }
-        public virtual courses courses { get; set; }
-        public virtual instructors instructors { get; set; }
+        public virtual days_of_week days_of_week { get; set; }
+        public virtual groups groups { get; set; }
+        public virtual subjects subjects { get; set; }
     }
 }

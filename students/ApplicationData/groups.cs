@@ -12,18 +12,23 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class semesters
+    public partial class groups
     {
-        public semesters()
+        public groups()
         {
-            this.courses = new HashSet<courses>();
+            this.exams = new HashSet<exams>();
+            this.schedules = new HashSet<schedules>();
+            this.students = new HashSet<students>();
         }
     
-        public int id_semester { get; set; }
-        public string semester_name { get; set; }
-        public Nullable<System.DateTime> start_date { get; set; }
-        public Nullable<System.DateTime> end_date { get; set; }
+        public int id_group { get; set; }
+        public string group_number { get; set; }
+        public int id_specialty { get; set; }
+        public int course { get; set; }
     
-        public virtual ICollection<courses> courses { get; set; }
+        public virtual ICollection<exams> exams { get; set; }
+        public virtual specialties specialties { get; set; }
+        public virtual ICollection<schedules> schedules { get; set; }
+        public virtual ICollection<students> students { get; set; }
     }
 }

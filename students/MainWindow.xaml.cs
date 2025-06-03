@@ -25,9 +25,9 @@ namespace students
         {
             InitializeComponent();
 
-            ApplicationData.AppConnect.model01 = new ApplicationData.studentsEntities();
+            ApplicationData.AppConnect.model01 = new ApplicationData.student_accountingEntities();
             ApplicationData.AppFrame.frmMain2 = frameMain;
-            frameMain.Navigate(new Pages.Autorization());
+            frameMain.Navigate(new Pages.DataOutput());
         }
     }
 }

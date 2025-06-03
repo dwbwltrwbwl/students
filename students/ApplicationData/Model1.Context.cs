@@ -13,10 +13,10 @@ namespace students.ApplicationData
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class studentsEntities : DbContext
+    public partial class student_accountingEntities : DbContext
     {
-        public studentsEntities()
-            : base("name=studentsEntities")
+        public student_accountingEntities()
+            : base("name=student_accountingEntities")
         {
         }
     
@@ -26,20 +26,20 @@ namespace students.ApplicationData
         }
     
         public DbSet<attendance> attendance { get; set; }
-        public DbSet<classrooms> classrooms { get; set; }
-        public DbSet<courses> courses { get; set; }
-        public DbSet<degrees> degrees { get; set; }
-        public DbSet<enrollments> enrollments { get; set; }
-        public DbSet<feedback> feedback { get; set; }
-        public DbSet<grades> grades { get; set; }
-        public DbSet<instructors> instructors { get; set; }
-        public DbSet<majors> majors { get; set; }
-        public DbSet<organization_memberships> organization_memberships { get; set; }
+        public DbSet<control_types> control_types { get; set; }
+        public DbSet<days_of_week> days_of_week { get; set; }
+        public DbSet<exams> exams { get; set; }
+        public DbSet<faculties> faculties { get; set; }
+        public DbSet<genders> genders { get; set; }
+        public DbSet<groups> groups { get; set; }
+        public DbSet<qualifications> qualifications { get; set; }
+        public DbSet<roles> roles { get; set; }
         public DbSet<schedules> schedules { get; set; }
-        public DbSet<semesters> semesters { get; set; }
-        public DbSet<student_organizations> student_organizations { get; set; }
+        public DbSet<specialties> specialties { get; set; }
         public DbSet<students> students { get; set; }
         public DbSet<subjects> subjects { get; set; }
         public DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public DbSet<teachers> teachers { get; set; }
+        public DbSet<visits> visits { get; set; }
     }
 }

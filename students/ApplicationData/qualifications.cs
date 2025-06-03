@@ -12,15 +12,16 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class feedback
+    public partial class qualifications
     {
-        public int id_feedback { get; set; }
-        public Nullable<int> id_student { get; set; }
-        public Nullable<int> id_course { get; set; }
-        public string feedback_text { get; set; }
-        public Nullable<System.DateTime> feedback_date { get; set; }
+        public qualifications()
+        {
+            this.teachers = new HashSet<teachers>();
+        }
     
-        public virtual courses courses { get; set; }
-        public virtual students students { get; set; }
+        public int id_qualification { get; set; }
+        public string qualification_name { get; set; }
+    
+        public virtual ICollection<teachers> teachers { get; set; }
     }
 }

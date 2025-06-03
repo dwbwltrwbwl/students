@@ -12,17 +12,18 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class student_organizations
+    public partial class specialties
     {
-        public student_organizations()
+        public specialties()
         {
-            this.organization_memberships = new HashSet<organization_memberships>();
+            this.groups = new HashSet<groups>();
         }
     
-        public int id_organization { get; set; }
-        public string organization_name { get; set; }
-        public string description { get; set; }
+        public int id_specialty { get; set; }
+        public int id_faculty { get; set; }
+        public string specialty_name { get; set; }
     
-        public virtual ICollection<organization_memberships> organization_memberships { get; set; }
+        public virtual faculties faculties { get; set; }
+        public virtual ICollection<groups> groups { get; set; }
     }
 }

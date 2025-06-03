@@ -12,25 +12,16 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class courses
+    public partial class days_of_week
     {
-        public courses()
+        public days_of_week()
         {
-            this.enrollments = new HashSet<enrollments>();
-            this.feedback = new HashSet<feedback>();
             this.schedules = new HashSet<schedules>();
-            this.subjects = new HashSet<subjects>();
         }
     
-        public int id_course { get; set; }
-        public string course_name { get; set; }
-        public string course_description { get; set; }
-        public int id_semester { get; set; }
+        public int id_day { get; set; }
+        public string day_of_week { get; set; }
     
-        public virtual semesters semesters { get; set; }
-        public virtual ICollection<enrollments> enrollments { get; set; }
-        public virtual ICollection<feedback> feedback { get; set; }
         public virtual ICollection<schedules> schedules { get; set; }
-        public virtual ICollection<subjects> subjects { get; set; }
     }
 }

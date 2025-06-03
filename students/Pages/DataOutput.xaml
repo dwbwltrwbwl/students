@@ -3,12 +3,106 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:students.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="800"
       Title="DataOutput">
 
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Панель фильтров -->
+        <StackPanel Grid.Row="0" Margin="10">
+            <!--<StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="Поиск:" Width="100"/>
+                <TextBox x:Name="TextSearch" Width="200" Height="25"
+                         TextChanged="TextSearch_TextChanged"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="Сортировка:" Width="100"/>
+                <ComboBox x:Name="ComboSort" Width="200" Height="25"
+                          SelectionChanged="ComboSort_SelectionChanged">
+                    <ComboBoxItem Content="Не сортировать" IsSelected="True"/>
+                    <ComboBoxItem Content="По дате (сначала новые)"/>
+                    <ComboBoxItem Content="По дате (сначала старые)"/>
+                    <ComboBoxItem Content="По студенту (А-Я)"/>
+                    <ComboBoxItem Content="По студенту (Я-А)"/>
+                    <ComboBoxItem Content="По предмету (А-Я)"/>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Фильтр:" Width="100"/>
+                <ComboBox x:Name="ComboFilter" Width="200" Height="25"
+                          SelectionChanged="ComboFilter_SelectionChanged">
+                    <ComboBoxItem Content="Все записи" IsSelected="True"/>
+                    <ComboBoxItem Content="Только присутствия"/>
+                    <ComboBoxItem Content="Только отсутствия"/>
+                </ComboBox>
+            </StackPanel>-->
+        </StackPanel>
+
+        <ListView x:Name="listAttendance" Grid.Row="1" Margin="10">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding id_attendance}"/>
+                    <GridViewColumn Header="Студент" Width="180">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock>
+                            <Run Text="{Binding students.last_name}"/>
+                            <Run Text="{Binding students.first_name}"/>
+                            <Run Text="{Binding students.middle_name}"/>
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Группа" Width="90" DisplayMemberBinding="{Binding students.groups.group_number}"/>
+                    <GridViewColumn Header="Предмет" Width="170" DisplayMemberBinding="{Binding subjects.subject_name}"/>
+                    <GridViewColumn Header="Дата" Width="80" DisplayMemberBinding="{Binding date, StringFormat=dd.MM.yyyy}"/>
+                    <GridViewColumn Header="Присутствие" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding visits.visit_name}">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding visits.visit_name}" Value="True">
+                                                    <Setter Property="Text" Value="Присутствовал"/>
+                                                    <Setter Property="Foreground" Value="Green"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding presence}" Value="False">
+                                                    <Setter Property="Text" Value="Отсутствовал"/>
+                                                    <Setter Property="Foreground" Value="Red"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="Оценка" Width="80" DisplayMemberBinding="{Binding grade}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <!-- Панель управления -->
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
+            <Button Content="Добавить запись" Width="120" Height="30" Margin="0,0,10,0"
+                    Click="AddButton_Click"/>
+            <Button Content="Редактировать" Width="100" Height="30" Margin="0,0,10,0"
+                    Click="EditButton_Click"/>
+            <Button Content="Удалить" Width="80" Height="30" Margin="0,0,10,0"
+                    Click="DeleteButton_Click"/>
+            <TextBlock x:Name="TextFoundCount" Text="Найдено записей: 0" VerticalAlignment="Center"/>
+        </StackPanel>
     </Grid>
 </Page>

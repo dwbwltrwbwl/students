@@ -12,12 +12,16 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class degrees
+    public partial class exams
     {
-        public int id_degree { get; set; }
-        public string degree_name { get; set; }
-        public string degree_description { get; set; }
+        public int id_exam { get; set; }
+        public int id_group { get; set; }
+        public int id_subject { get; set; }
+        public Nullable<int> id_control_type { get; set; }
+        public Nullable<System.DateTime> date { get; set; }
     
-        public virtual majors majors { get; set; }
+        public virtual control_types control_types { get; set; }
+        public virtual groups groups { get; set; }
+        public virtual subjects subjects { get; set; }
     }
 }

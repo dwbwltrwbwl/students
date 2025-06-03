@@ -9,6 +9,6 @@ namespace students.ApplicationData
     class AppConnect
     {
         public static int id_instructor;
-        public static studentsEntities model01;
+        public static student_accountingEntities model01;
     }
 }

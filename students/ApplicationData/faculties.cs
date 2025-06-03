@@ -12,21 +12,16 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class instructors
+    public partial class faculties
     {
-        public instructors()
+        public faculties()
         {
-            this.schedules = new HashSet<schedules>();
+            this.specialties = new HashSet<specialties>();
         }
     
-        public int id_instructor { get; set; }
-        public string first_name { get; set; }
-        public string last_name { get; set; }
-        public string email { get; set; }
-        public string telephone { get; set; }
-        public string login { get; set; }
-        public string password { get; set; }
+        public int id_faculty { get; set; }
+        public string faculty_name { get; set; }
     
-        public virtual ICollection<schedules> schedules { get; set; }
+        public virtual ICollection<specialties> specialties { get; set; }
     }
 }

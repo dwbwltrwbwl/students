@@ -16,23 +16,19 @@ namespace students.ApplicationData
     {
         public students()
         {
-            this.enrollments = new HashSet<enrollments>();
-            this.feedback = new HashSet<feedback>();
-            this.organization_memberships = new HashSet<organization_memberships>();
+            this.attendance = new HashSet<attendance>();
         }
     
         public int id_student { get; set; }
-        public string first_name { get; set; }
         public string last_name { get; set; }
-        public Nullable<System.DateTime> date_of_birth { get; set; }
-        public string email { get; set; }
-        public string telephone { get; set; }
-        public Nullable<System.DateTime> enrollment_date { get; set; }
-        public Nullable<int> id_major { get; set; }
+        public string first_name { get; set; }
+        public string middle_name { get; set; }
+        public int id_gender { get; set; }
+        public int id_group { get; set; }
+        public System.DateTime date_birth { get; set; }
     
-        public virtual ICollection<enrollments> enrollments { get; set; }
-        public virtual ICollection<feedback> feedback { get; set; }
-        public virtual majors majors { get; set; }
-        public virtual ICollection<organization_memberships> organization_memberships { get; set; }
+        public virtual ICollection<attendance> attendance { get; set; }
+        public virtual genders genders { get; set; }
+        public virtual groups groups { get; set; }
     }
 }

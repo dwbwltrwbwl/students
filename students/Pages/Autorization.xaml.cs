@@ -30,8 +30,7 @@ namespace students.Pages
         {
             try
             {
-                var userObj = ApplicationData.AppConnect.model01.instructors.FirstOrDefault(x => x.login == TBLogin.Text && x.password == PBPassword.Password);
-
+                var userObj = ApplicationData.AppConnect.model01.teachers.FirstOrDefault(x => x.login == TBLogin.Text && x.password == PBPassword.Password);
                 string login = TBLogin.Text;
                 string password = PBPassword.Password;
                 if (
@@ -50,7 +49,7 @@ namespace students.Pages
                 {
                     string fullName = $"{userObj.first_name} {userObj.last_name}";
                     MessageBox.Show($"Здравствуйте, {fullName}", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
-                    AppConnect.id_instructor = userObj.id_instructor;
+                    AppConnect.id_instructor = userObj.id_teacher;
                     NavigationService.Navigate(new DataOutput());
                 }
             }

@@ -4,38 +4,39 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4083b1cacb1f4fde987241fcb98e4376" Name="Diagram1">
-        <EntityTypeShape EntityType="studentsModel.attendance" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.classrooms" Width="1.5" PointX="3" PointY="2.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.courses" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.degrees" Width="1.5" PointX="1.5" PointY="19.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.enrollments" Width="1.5" PointX="5.25" PointY="7.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.feedback" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.grades" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.instructors" Width="1.5" PointX="3" PointY="11.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.majors" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.organization_memberships" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.schedules" Width="1.5" PointX="5.25" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.semesters" Width="1.5" PointX="0.75" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.student_organizations" Width="1.5" PointX="3" PointY="22.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.students" Width="1.5" PointX="3" PointY="15" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.subjects" Width="1.5" PointX="5.25" PointY="20" IsExpanded="true" />
-        <EntityTypeShape EntityType="studentsModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="studentsModel.FK_attendance_enrollments" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_schedules_classrooms" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_courses_semesters1" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_enrollments_courses" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_feedback_courses" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_schedules_courses" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_subjects_courses" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_majors_degrees" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_enrollments_students" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_grades_enrollments" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_feedback_students" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_schedules_instructors" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_students_majors" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_organization_memberships_student_organizations" ManuallyRouted="false" />
-        <AssociationConnector Association="studentsModel.FK_organization_memberships_students" ManuallyRouted="false" />
+      <Diagram DiagramId="e5af3366fbdc4b51a7372e25cf90eedb" Name="Diagram1">
+        <EntityTypeShape EntityType="student_accountingModel.attendance" Width="1.5" PointX="7.5" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.control_types" Width="1.5" PointX="8.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.days_of_week" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.exams" Width="1.5" PointX="10.5" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.faculties" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.genders" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.groups" Width="1.5" PointX="5.25" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.qualifications" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.roles" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.schedules" Width="1.5" PointX="7.5" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.specialties" Width="1.5" PointX="3" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.students" Width="1.5" PointX="5.25" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.subjects" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.teachers" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="student_accountingModel.visits" Width="1.5" PointX="5.25" PointY="16.125" IsExpanded="true" />
+        <AssociationConnector Association="student_accountingModel.FK_attendance_students" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_attendance_subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_attendance_visits" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_exams_control_types" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_schedules_days_of_week" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_exams_groups" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_exams_subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_specialties_faculties" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_students_genders" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_groups_specialties" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_schedules_groups" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_students_groups" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_teachers_qualifications" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_teachers_roles" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_schedules_subjects" ManuallyRouted="false" />
+        <AssociationConnector Association="student_accountingModel.FK_subjects_teachers" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

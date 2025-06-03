@@ -12,18 +12,16 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class majors
+    public partial class roles
     {
-        public majors()
+        public roles()
         {
-            this.students = new HashSet<students>();
+            this.teachers = new HashSet<teachers>();
         }
     
-        public int id_major { get; set; }
-        public string major_name { get; set; }
-        public Nullable<int> id_degree { get; set; }
+        public int id_role { get; set; }
+        public string role_name { get; set; }
     
-        public virtual degrees degrees { get; set; }
-        public virtual ICollection<students> students { get; set; }
+        public virtual ICollection<teachers> teachers { get; set; }
     }
 }

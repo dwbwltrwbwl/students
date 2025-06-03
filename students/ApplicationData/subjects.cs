@@ -14,11 +14,20 @@ namespace students.ApplicationData
     
     public partial class subjects
     {
-        public int id_subject { get; set; }
-        public string subject_name { get; set; }
-        public string subject_description { get; set; }
-        public Nullable<int> id_course { get; set; }
+        public subjects()
+        {
+            this.attendance = new HashSet<attendance>();
+            this.exams = new HashSet<exams>();
+            this.schedules = new HashSet<schedules>();
+        }
     
-        public virtual courses courses { get; set; }
+        public int id_subject { get; set; }
+        public int id_teacher { get; set; }
+        public string subject_name { get; set; }
+    
+        public virtual ICollection<attendance> attendance { get; set; }
+        public virtual ICollection<exams> exams { get; set; }
+        public virtual ICollection<schedules> schedules { get; set; }
+        public virtual teachers teachers { get; set; }
     }
 }

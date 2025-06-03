@@ -15,10 +15,14 @@ namespace students.ApplicationData
     public partial class attendance
     {
         public int id_attendance { get; set; }
-        public Nullable<int> id_enrollment { get; set; }
-        public Nullable<System.DateTime> date { get; set; }
-        public string status { get; set; }
+        public int id_student { get; set; }
+        public int id_subject { get; set; }
+        public System.DateTime date { get; set; }
+        public int id_visit { get; set; }
+        public Nullable<int> grade { get; set; }
     
-        public virtual enrollments enrollments { get; set; }
+        public virtual students students { get; set; }
+        public virtual subjects subjects { get; set; }
+        public virtual visits visits { get; set; }
     }
 }

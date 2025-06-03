@@ -12,23 +12,16 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class enrollments
+    public partial class control_types
     {
-        public enrollments()
+        public control_types()
         {
-            this.attendance = new HashSet<attendance>();
-            this.grades = new HashSet<grades>();
+            this.exams = new HashSet<exams>();
         }
     
-        public int id_enrollment { get; set; }
-        public Nullable<int> id_student { get; set; }
-        public Nullable<int> id_course { get; set; }
-        public Nullable<System.DateTime> enrollment_date { get; set; }
-        public string status { get; set; }
+        public int id_control_type { get; set; }
+        public string control_type_name { get; set; }
     
-        public virtual ICollection<attendance> attendance { get; set; }
-        public virtual courses courses { get; set; }
-        public virtual students students { get; set; }
-        public virtual ICollection<grades> grades { get; set; }
+        public virtual ICollection<exams> exams { get; set; }
     }
 }

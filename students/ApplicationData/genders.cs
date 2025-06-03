@@ -12,14 +12,16 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class organization_memberships
+    public partial class genders
     {
-        public int id_membership { get; set; }
-        public Nullable<int> id_student { get; set; }
-        public Nullable<int> id_organization { get; set; }
-        public Nullable<System.DateTime> join_date { get; set; }
+        public genders()
+        {
+            this.students = new HashSet<students>();
+        }
     
-        public virtual student_organizations student_organizations { get; set; }
-        public virtual students students { get; set; }
+        public int id_gender { get; set; }
+        public string gender_name { get; set; }
+    
+        public virtual ICollection<students> students { get; set; }
     }
 }

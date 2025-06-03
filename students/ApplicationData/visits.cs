@@ -12,13 +12,16 @@ namespace students.ApplicationData
     using System;
     using System.Collections.Generic;
     
-    public partial class grades
+    public partial class visits
     {
-        public int id_grade { get; set; }
-        public Nullable<int> id_enrollment { get; set; }
-        public Nullable<int> grade { get; set; }
-        public Nullable<System.DateTime> date_assigned { get; set; }
+        public visits()
+        {
+            this.attendance = new HashSet<attendance>();
+        }
     
-        public virtual enrollments enrollments { get; set; }
+        public int id_visit { get; set; }
+        public string visit_name { get; set; }
+    
+        public virtual ICollection<attendance> attendance { get; set; }
     }
 }

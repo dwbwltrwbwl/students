@@ -1,100 +1,117 @@
 ﻿using students.ApplicationData;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace students.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для Registration.xaml
-    /// </summary>
     public partial class Registration : Page
     {
         public Registration()
         {
             InitializeComponent();
-            ButtonZareg.IsEnabled = false;
+            LoadQualifications();
         }
-        private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
+
+        private void LoadQualifications()
         {
-            if (PBpassword.Password != TBPassword.Text)
+            try
             {
-                ButtonZareg.IsEnabled = false;
-                PBpassword.Background = Brushes.LightCoral;
-                PBpassword.BorderBrush = Brushes.Red;
+                var qualifications = AppConnect.model01.qualifications.ToList();
+                CBQualification.ItemsSource = qualifications;
+                CBQualification.DisplayMemberPath = "qualification_name";
+                CBQualification.SelectedValuePath = "id_qualification";
             }
-            else
+            catch (Exception ex)
             {
-                ButtonZareg.IsEnabled = true;
-                PBpassword.Background = Brushes.LightGreen;
-                PBpassword.BorderBrush = Brushes.Green;
+                MessageBox.Show($"Ошибка загрузки квалификаций: {ex.Message}", "Ошибка",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
         private void ButtonRegist_Click(object sender, RoutedEventArgs e)
         {
             string first_name = TBName.Text;
             string last_name = TBSurname.Text;
+            string middle_name = TBMiddleName.Text;
             string email = TBEmail.Text;
-            string telephone = TBTelephone.Text;
+            string phone = TBTelephone.Text;
             string login = TBLogin.Text;
             string password = TBPassword.Text;
             string passwordRepeat = PBpassword.Password;
-
             if (string.IsNullOrWhiteSpace(first_name) ||
                 string.IsNullOrWhiteSpace(last_name) ||
+                string.IsNullOrWhiteSpace(middle_name) ||
                 string.IsNullOrWhiteSpace(email) ||
-                string.IsNullOrWhiteSpace(telephone) ||
+                string.IsNullOrWhiteSpace(phone) ||
                 string.IsNullOrWhiteSpace(login) ||
                 string.IsNullOrWhiteSpace(password) ||
                 string.IsNullOrWhiteSpace(passwordRepeat))
             {
-                MessageBox.Show("Пожалуйста, заполните все поля.", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("Пожалуйста, заполните все поля.", "Уведомление",
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
-
-            if (ApplicationData.AppConnect.model01.instructors.Count(x => x.login == TBLogin.Text) > 0)
+            if (CBQualification.SelectedItem == null)
+            {
+                MessageBox.Show("Пожалуйста, выберите квалификацию.", "Уведомление",
+                                MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            if (password != passwordRepeat)
+            {
+                MessageBox.Show("Пароли не совпадают!", "Ошибка",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (AppConnect.model01.teachers.Any(x => x.login == login))
             {
                 MessageBox.Show("Пользователь с таким логином уже существует!", "Уведомление",
                                 MessageBoxButton.OK, MessageBoxImage.Information);
                 return;
             }
-
             try
             {
-                instructors userObj = new instructors
+                var selectedQualification = (qualifications)CBQualification.SelectedItem;
+                var teacherRole = AppConnect.model01.roles.FirstOrDefault(r => r.id_role == 1);
+                if (teacherRole == null)
+                {
+                    MessageBox.Show("Роль преподавателя не найдена в системе!", "Ошибка",
+                                    MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
+                teachers userObj = new teachers
                 {
                     first_name = first_name,
                     last_name = last_name,
+                    middle_name = middle_name,
                     email = email,
-                    telephone = telephone,
+                    phone = phone,
                     login = login,
-                    password = password
+                    password = password,
+                    id_qualification = selectedQualification.id_qualification,
+                    id_role = teacherRole.id_role
                 };
-                AppConnect.model01.instructors.Add(userObj);
+                AppConnect.model01.teachers.Add(userObj);
                 AppConnect.model01.SaveChanges();
-                MessageBox.Show("Данные успешно добавлены!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Information);
+                MessageBox.Show("Регистрация прошла успешно!", "Уведомление",
+                                MessageBoxButton.OK, MessageBoxImage.Information);
                 TBName.Clear();
                 TBSurname.Clear();
+                TBMiddleName.Clear();
                 TBEmail.Clear();
                 TBTelephone.Clear();
                 TBLogin.Clear();
                 TBPassword.Clear();
                 PBpassword.Clear();
+                CBQualification.SelectedItem = null;
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка при добавлении данных: " + ex.Message, "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show($"Ошибка при регистрации: {ex.Message}\n\n" +
+                                $"Inner exception: {ex.InnerException?.Message}", "Ошибка",
+                                MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 

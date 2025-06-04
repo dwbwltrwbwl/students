@@ -32,17 +32,36 @@ namespace students.Pages
         }
         private void TextSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
+            UpdateAttendanceList();
+        }
+        private void ComboSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
             
         }
-        private void ComboSort_SelectionChanged(object sender, TextChangedEventArgs e)
-        {
 
-        }
         private void ComboFilter_SelectionChanged(object sender, TextChangedEventArgs e)
         {
 
         }
+        private void UpdateAttendanceList()
+        {
+            string searchText = TextSearch.Text.ToLower();
 
+            if (allAttendance == null)
+            {
+                filteredAttendance = new List<attendance>();
+                listAttendance.ItemsSource = filteredAttendance;
+                return;
+            }
+            filteredAttendance = allAttendance
+                .Where(a => a.students.last_name.ToLower().Contains(searchText) ||
+                             a.students.first_name.ToLower().Contains(searchText) ||
+                             a.students.middle_name.ToLower().Contains(searchText) ||
+                             a.subjects.subject_name.ToLower().Contains(searchText) ||
+                             a.date.ToString("dd.MM.yyyy").Contains(searchText))
+                .ToList();
+            listAttendance.ItemsSource = filteredAttendance;
+        }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
 

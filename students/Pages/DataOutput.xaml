@@ -7,7 +7,7 @@
       d:DesignHeight="600" d:DesignWidth="800"
       Title="DataOutput">
 
-    <Grid>
+    <Grid Background="#f0e3fc">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -17,9 +17,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Панель фильтров -->
         <StackPanel Grid.Row="0" Margin="10">
-            <!--<StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                 <TextBlock Text="Поиск:" Width="100"/>
                 <TextBox x:Name="TextSearch" Width="200" Height="25"
                          TextChanged="TextSearch_TextChanged"/>
@@ -38,7 +37,7 @@
                 </ComboBox>
             </StackPanel>
 
-            <StackPanel Orientation="Horizontal">
+            <!--<StackPanel Orientation="Horizontal">
                 <TextBlock Text="Фильтр:" Width="100"/>
                 <ComboBox x:Name="ComboFilter" Width="200" Height="25"
                           SelectionChanged="ComboFilter_SelectionChanged">
@@ -96,13 +95,74 @@
 
         <!-- Панель управления -->
         <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-            <Button Content="Добавить запись" Width="120" Height="30" Margin="0,0,10,0"
-                    Click="AddButton_Click"/>
-            <Button Content="Редактировать" Width="100" Height="30" Margin="0,0,10,0"
-                    Click="EditButton_Click"/>
-            <Button Content="Удалить" Width="80" Height="30" Margin="0,0,10,0"
-                    Click="DeleteButton_Click"/>
-            <TextBlock x:Name="TextFoundCount" Text="Найдено записей: 0" VerticalAlignment="Center"/>
+            <Button Content="Добавить запись" Width="150" Height="30" Margin="0,0,10,0"
+            FontFamily="Gill Sans Ultra Bold" FontSize="14" Foreground="White" Background="#FF5427D4"
+            Click="AddButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="#FF5427D4" 
+                                    BorderThickness="1" 
+                                    CornerRadius="10" 
+                                    Padding="5">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button Content="Редактировать" Width="135" Height="30" Margin="0,0,10,0"
+            FontFamily="Gill Sans Ultra Bold" FontSize="14" Foreground="White" Background="#FF5427D4"
+            Click="EditButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="#FF5427D4" 
+                                    BorderThickness="1" 
+                                    CornerRadius="10" 
+                                    Padding="5">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+            <Button Content="Удалить" Width="90" Height="30" Margin="0,0,10,0"
+            FontFamily="Gill Sans Ultra Bold" FontSize="14" Foreground="White" Background="#FF5427D4"
+            Click="DeleteButton_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                    BorderBrush="#FF5427D4" 
+                                    BorderThickness="1" 
+                                    CornerRadius="10" 
+                                    Padding="5">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                                  VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
     </Grid>
 </Page>

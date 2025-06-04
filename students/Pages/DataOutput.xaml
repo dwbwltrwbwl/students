@@ -201,10 +201,34 @@
                         </Style>
                     </ComboBox.Style>
                 </ComboBox>
+                <Button Grid.Column="3" 
+                    Content="Сформировать отчет" 
+                    Click="GenerateReportButton_Click"
+                    Foreground="#FF5427D4"
+                    Background="Transparent"
+                    BorderThickness="0"
+                    FontFamily="Gill Sans Ultra Bold"
+                    FontSize="14"
+                    Padding="5"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Margin="300,0,0,0">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Foreground" Value="#FF7F5FDB"/>
+                                    <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </StackPanel>
         </StackPanel>
 
-        <ListView x:Name="listAttendance" Grid.Row="1" Margin="10">
+        <ListView x:Name="listAttendance" Grid.Row="1" Margin="10" SelectionMode="Single">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Студент" Width="180">
@@ -248,9 +272,16 @@
             </ListView.View>
         </ListView>
 
-        <!-- Панель управления -->
-        <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10">
-            <Button Content="Добавить запись" Width="150" Height="30" Margin="0,0,10,0"
+        <Grid Grid.Row="2" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Добавить запись" Width="150" Height="30" Margin="0,0,10,0"
             FontFamily="Gill Sans Ultra Bold" FontSize="14" Foreground="White" Background="#FF5427D4"
             Click="AddButton_Click">
                 <Button.Style>
@@ -273,7 +304,7 @@
                 </Button.Style>
             </Button>
 
-            <Button Content="Редактировать" Width="135" Height="30" Margin="0,0,10,0"
+            <Button Grid.Column="1" Content="Редактировать" Width="135" Height="30" Margin="0,0,10,0"
             FontFamily="Gill Sans Ultra Bold" FontSize="14" Foreground="White" Background="#FF5427D4"
             Click="EditButton_Click">
                 <Button.Style>
@@ -296,7 +327,7 @@
                 </Button.Style>
             </Button>
 
-            <Button Content="Удалить" Width="90" Height="30" Margin="0,0,10,0"
+            <Button Grid.Column="2" Content="Удалить" Width="90" Height="30" Margin="0,0,10,0"
             FontFamily="Gill Sans Ultra Bold" FontSize="14" Foreground="White" Background="#FF5427D4"
             Click="DeleteButton_Click">
                 <Button.Style>
@@ -318,6 +349,28 @@
                     </Style>
                 </Button.Style>
             </Button>
-        </StackPanel>
+
+            <Button Grid.Column="4" Content="Выход" 
+            Click="ExitButton_Click"
+            Foreground="#FF5427D4"
+            Background="Transparent"
+            BorderThickness="0"
+            FontFamily="Gill Sans Ultra Bold"
+            FontSize="14"
+            Padding="5"
+            HorizontalAlignment="Right">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF7F5FDB"/>
+                                <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </Grid>
     </Grid>
 </Page>

@@ -86,7 +86,7 @@ namespace students.Pages
 
             filteredAttendance = allAttendance?
                 .Where(a =>
-                    (selectedGroup == null || a.students?.groups?.id_group == selectedGroup.id_group) && // Фильтр по группе
+                    (selectedGroup == null || a.students?.groups?.id_group == selectedGroup.id_group) &&
                     (a.students?.last_name?.ToLower()?.Contains(searchText) == true ||
                      a.students?.first_name?.ToLower()?.Contains(searchText) == true ||
                      a.students?.middle_name?.ToLower()?.Contains(searchText) == true ||
@@ -179,6 +179,44 @@ namespace students.Pages
                 MessageBox.Show($"Ошибка при удалении: {ex.Message}\n\n" +
                                 "Подробности: " + ex.InnerException?.Message,
                                 "Ошибка базы данных",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Error);
+            }
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Autorization());
+        }
+
+        private void GenerateReportButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (listAttendance.SelectedItem == null)
+            {
+                MessageBox.Show("Выберите студента из списка",
+                                "Внимание",
+                                MessageBoxButton.OK,
+                                MessageBoxImage.Warning);
+                return;
+            }
+
+            try
+            {
+                dynamic selectedRecord = listAttendance.SelectedItem;
+                if (selectedRecord.students == null)
+                {
+                    MessageBox.Show("В выбранной записи отсутствует информация о студенте",
+                                    "Ошибка",
+                                    MessageBoxButton.OK,
+                                    MessageBoxImage.Error);
+                    return;
+                }
+                NavigationService.Navigate(new GeneratedReport(selectedRecord.students));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Ошибка при формировании отчета: {ex.Message}",
+                                "Ошибка",
                                 MessageBoxButton.OK,
                                 MessageBoxImage.Error);
             }

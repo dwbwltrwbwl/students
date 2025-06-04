@@ -19,15 +19,108 @@
 
         <StackPanel Grid.Row="0" Margin="10">
             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                <TextBlock Text="Поиск:" Width="100"/>
-                <TextBox x:Name="TextSearch" Width="200" Height="25"
-                         TextChanged="TextSearch_TextChanged"/>
+                <TextBlock Text="Поиск:" 
+                   Width="100" 
+                   Foreground="#FF5427D4" 
+                   Height="22" 
+                   FontWeight="Bold" 
+                   FontFamily="Gill Sans Ultra Bold" 
+                   FontSize="14"/>
+                <TextBox x:Name="TextSearch" 
+                 Width="200" 
+                 Height="22" 
+                 FontSize="16" 
+                 Margin="0,0,0,5"
+                 TextChanged="TextSearch_TextChanged">
+                    <TextBox.Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="TextBox">
+                                        <Border Background="White" 
+                                        BorderBrush="#FF5427D4" 
+                                        BorderThickness="1" 
+                                        CornerRadius="10">
+                                            <ScrollViewer x:Name="PART_ContentHost" Margin="5,0"/>
+                                        </Border>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </TextBox.Style>
+                </TextBox>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                <TextBlock Text="Сортировка:" Width="100"/>
-                <ComboBox x:Name="ComboSort" Width="200" Height="25"
-                          SelectionChanged="ComboSort_SelectionChanged">
+                <TextBlock Text="Сортировка:" 
+                   Width="100" 
+                   Foreground="#FF5427D4" 
+                   Height="22" 
+                   FontWeight="Bold" 
+                   FontFamily="Gill Sans Ultra Bold" 
+                   FontSize="14"/>
+                <ComboBox x:Name="ComboSort" 
+                  Width="200" 
+                  Height="22" 
+                  FontSize="16"
+                  Margin="0,0,0,5"
+                  SelectionChanged="ComboSort_SelectionChanged">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ComboBox">
+                                        <Grid>
+                                            <Border x:Name="border"
+                                            Background="White"
+                                            BorderBrush="#FF5427D4"
+                                            BorderThickness="1"
+                                            CornerRadius="10"/>
+
+                                            <ContentPresenter x:Name="contentPresenter"
+                                                      Content="{TemplateBinding SelectionBoxItem}"
+                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                      Margin="5,0"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Left"/>
+
+                                            <ToggleButton x:Name="toggleButton"
+                                                  Grid.ColumnSpan="2"
+                                                  Background="Transparent"
+                                                  BorderBrush="Transparent"
+                                                  Focusable="False"
+                                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ClickMode="Press"/>
+
+                                            <Path x:Name="arrow"
+                                          Fill="#FF5427D4"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,5,0"
+                                          Data="M 0 0 L 4 4 L 8 0 Z"/>
+
+                                            <Popup x:Name="PART_Popup"
+                                           AllowsTransparency="True"
+                                           Placement="Bottom"
+                                           Focusable="False"
+                                           IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                           PopupAnimation="Slide">
+                                                <Border CornerRadius="10"
+                                                BorderBrush="#FF5427D4"
+                                                BorderThickness="1"
+                                                Background="White">
+                                                    <ScrollViewer>
+                                                        <ItemsPresenter/>
+                                                    </ScrollViewer>
+                                                </Border>
+                                            </Popup>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ComboBox.Style>
                     <ComboBoxItem Content="Не сортировать" IsSelected="True"/>
                     <ComboBoxItem Content="По дате (сначала новые)"/>
                     <ComboBoxItem Content="По дате (сначала старые)"/>
@@ -37,21 +130,83 @@
                 </ComboBox>
             </StackPanel>
 
-            <!--<StackPanel Orientation="Horizontal">
-                <TextBlock Text="Фильтр:" Width="100"/>
-                <ComboBox x:Name="ComboFilter" Width="200" Height="25"
-                          SelectionChanged="ComboFilter_SelectionChanged">
-                    <ComboBoxItem Content="Все записи" IsSelected="True"/>
-                    <ComboBoxItem Content="Только присутствия"/>
-                    <ComboBoxItem Content="Только отсутствия"/>
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
+                <TextBlock Text="Группа:" 
+                   Width="100" 
+                   Foreground="#FF5427D4" 
+                   Height="22" 
+                   FontWeight="Bold" 
+                   FontFamily="Gill Sans Ultra Bold" 
+                   FontSize="14"/>
+                <ComboBox x:Name="ComboGroup" 
+                  Width="200" 
+                  Height="22" 
+                  FontSize="16"
+                  Margin="0,0,0,5"
+                  SelectionChanged="ComboFilter_SelectionChanged">
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="ComboBox">
+                                        <Grid>
+                                            <Border x:Name="border"
+                                            Background="White"
+                                            BorderBrush="#FF5427D4"
+                                            BorderThickness="1"
+                                            CornerRadius="10"/>
+
+                                            <ContentPresenter x:Name="contentPresenter"
+                                                      Content="{TemplateBinding SelectionBoxItem}"
+                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                                      Margin="5,0"
+                                                      VerticalAlignment="Center"
+                                                      HorizontalAlignment="Left"/>
+
+                                            <ToggleButton x:Name="toggleButton"
+                                                  Grid.ColumnSpan="2"
+                                                  Background="Transparent"
+                                                  BorderBrush="Transparent"
+                                                  Focusable="False"
+                                                  IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                                  ClickMode="Press"/>
+
+                                            <Path x:Name="arrow"
+                                          Fill="#FF5427D4"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Margin="0,0,5,0"
+                                          Data="M 0 0 L 4 4 L 8 0 Z"/>
+
+                                            <Popup x:Name="PART_Popup"
+                                           AllowsTransparency="True"
+                                           Placement="Bottom"
+                                           Focusable="False"
+                                           IsOpen="{Binding IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                                           PopupAnimation="Slide">
+                                                <Border CornerRadius="10"
+                                                BorderBrush="#FF5427D4"
+                                                BorderThickness="1"
+                                                Background="White">
+                                                    <ScrollViewer>
+                                                        <ItemsPresenter/>
+                                                    </ScrollViewer>
+                                                </Border>
+                                            </Popup>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ComboBox.Style>
                 </ComboBox>
-            </StackPanel>-->
+            </StackPanel>
         </StackPanel>
 
         <ListView x:Name="listAttendance" Grid.Row="1" Margin="10">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="ID" Width="30" DisplayMemberBinding="{Binding id_attendance}"/>
                     <GridViewColumn Header="Студент" Width="180">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>

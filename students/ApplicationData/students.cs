@@ -18,7 +18,7 @@ namespace students.ApplicationData
         {
             this.attendance = new HashSet<attendance>();
         }
-    
+        public string FullName => $"{last_name} {first_name} {middle_name}";
         public int id_student { get; set; }
         public string last_name { get; set; }
         public string first_name { get; set; }

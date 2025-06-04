@@ -15,23 +15,24 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Шапка с информацией о студенте -->
-        <Border Grid.Row="0" Background="#FF5427D4" Padding="10">
+        <Border Grid.Row="0" Padding="10">
             <StackPanel>
-                <TextBlock x:Name="tbStudentName" 
-                           Foreground="White"
-                           FontSize="20"
-                           FontWeight="Bold"
-                           TextAlignment="Center"/>
+                <TextBlock x:Name="tbStudentName"
+                   Foreground="#FF5427D4"
+                   FontSize="18"
+                   FontWeight="Bold"
+                   FontFamily="Gill Sans Ultra Bold"
+                   TextAlignment="Center"
+                   Margin="0,0,0,5"/>
                 <TextBlock x:Name="tbGroupInfo"
-                           Foreground="White"
-                           FontSize="16"
-                           TextAlignment="Center"
-                           Margin="0,5,0,0"/>
+                   Foreground="#FF5427D4"
+                   FontSize="14"
+                   FontWeight="Bold"
+                   FontFamily="Gill Sans Ultra Bold"
+                   TextAlignment="Center"/>
             </StackPanel>
         </Border>
 
-        <!-- Основной контент -->
         <TabControl Grid.Row="1" Margin="10">
             <TabItem Header="Оценки">
                 <ListView x:Name="lvGrades">
@@ -66,11 +67,15 @@
                                                     <Setter Property="Text" Value="Неизвестно"/>
                                                     <Setter Property="Foreground" Value="Black"/>
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding IsPresent}" Value="True">
+                                                        <DataTrigger Binding="{Binding VisitStatus}" Value="1">
                                                             <Setter Property="Text" Value="Присутствовал"/>
                                                             <Setter Property="Foreground" Value="Green"/>
                                                         </DataTrigger>
-                                                        <DataTrigger Binding="{Binding IsPresent}" Value="False">
+                                                        <DataTrigger Binding="{Binding VisitStatus}" Value="3">
+                                                            <Setter Property="Text" Value="Опоздание"/>
+                                                            <Setter Property="Foreground" Value="#FFA500"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding VisitStatus}" Value="2">
                                                             <Setter Property="Text" Value="Отсутствовал"/>
                                                             <Setter Property="Foreground" Value="Red"/>
                                                         </DataTrigger>
@@ -87,33 +92,109 @@
             </TabItem>
         </TabControl>
 
-        <!-- Статистика -->
         <Grid Grid.Row="2" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <TextBlock Text="Общий средний балл: " FontWeight="Bold" Foreground="#FF5427D4"/>
-                <TextBlock x:Name="tbTotalAverage" FontWeight="Bold" Margin="5,0" Foreground="#FF5427D4"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                <TextBlock Text="Общий средний балл: " 
+               FontFamily="Gill Sans Ultra Bold"
+               FontSize="14"
+               FontWeight="Bold" 
+               Foreground="#FF5427D4" VerticalAlignment="Center"/>
 
-                <TextBlock Text="Посещаемость: " FontWeight="Bold" Margin="20,0,0,0" Foreground="#FF5427D4"/>
-                <TextBlock x:Name="tbAttendancePercent" FontWeight="Bold" Margin="5,0" Foreground="#FF5427D4"/>
+                <TextBlock x:Name="tbTotalAverage" 
+               FontFamily="Gill Sans Ultra Bold"
+               FontSize="14"
+               FontWeight="Bold" 
+               Margin="5,0" 
+               Foreground="#FF5427D4" VerticalAlignment="Center"/>
+
+                <TextBlock Text="Посещаемость: " 
+               FontFamily="Gill Sans Ultra Bold"
+               FontSize="14"
+               FontWeight="Bold" 
+               Margin="20,0,0,0" 
+               Foreground="#FF5427D4"
+               VerticalAlignment="Center"/>
+
+                <TextBlock x:Name="tbAttendancePercent" 
+               FontFamily="Gill Sans Ultra Bold"
+               FontSize="14"
+               FontWeight="Bold" 
+               Margin="5,0" 
+               Foreground="#FF5427D4" VerticalAlignment="Center"/>
             </StackPanel>
 
-            <Button Grid.Column="1" Content="Назад" 
-                    Click="BackButton_Click"
-                    Foreground="#FF5427D4"
-                    Background="Transparent"
-                    BorderThickness="0"
-                    FontFamily="Gill Sans Ultra Bold"
-                    FontSize="14"
-                    Padding="5"
-                    HorizontalAlignment="Center" Height="27" VerticalAlignment="Top">
+            <Button Grid.Column="1" 
+                Content="Назад" 
+                Click="BackButton_Click"
+                Width="90"
+                Height="30"
+                FontFamily="Gill Sans Ultra Bold" 
+                FontSize="14" 
+                Foreground="White" 
+                Background="#FF5427D4"
+                Padding="5"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="#FF5427D4" 
+                                BorderThickness="1" 
+                                CornerRadius="10" 
+                                Padding="5">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                      VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="#FF7F5FDB"/>
+                                <Setter Property="TextBlock.TextDecorations" Value="Underline"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button 
+                Content="Word-документ" 
+                Click="WordDocument_Click"
+                Width="150"
+                Height="30"
+                FontFamily="Gill Sans Ultra Bold" 
+                FontSize="14" 
+                Foreground="White" 
+                Background="#FF5427D4"
+                Padding="5"
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" Margin="515,0,0,0">
+                <Button.Style>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Cursor" Value="Hand"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type Button}">
+                                    <Border Background="{TemplateBinding Background}" 
+                                        BorderBrush="#FF5427D4" 
+                                        BorderThickness="1" 
+                                        CornerRadius="10" 
+                                        Padding="5">
+                                        <ContentPresenter HorizontalAlignment="Center" 
+                                            VerticalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                         <Style.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="Foreground" Value="#FF7F5FDB"/>

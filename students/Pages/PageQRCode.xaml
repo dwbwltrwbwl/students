@@ -9,7 +9,47 @@
       Title="PageQRCode">
 
     <Grid Background="#f0e3fc">
-        <Button Content="Выход" HorizontalAlignment="Left" Margin="704,394,0,0" VerticalAlignment="Top" Click="ExitButton_Click" Height="46" Width="86"/>
-
+        <Image x:Name="imgQr" Width="300" Height="300" />
+        <Button Content="Выход" 
+        HorizontalAlignment="Left" 
+        Margin="700,410,0,0" 
+        VerticalAlignment="Top" 
+        Click="ExitButton_Click" 
+        Width="90" 
+        Height="30"
+        FontFamily="Gill Sans Ultra Bold" 
+        FontSize="14" 
+        Foreground="White" 
+        Background="#FF5427D4">
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border Background="{TemplateBinding Background}" 
+                                BorderBrush="#FF5427D4" 
+                                BorderThickness="1" 
+                                CornerRadius="10" 
+                                Padding="5">
+                                    <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"
+                                              Margin="5,0"/>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#FF7F5FDB"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#FF3A1D9A"/>
+                            <Setter Property="Foreground" Value="#CCFFFFFF"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
     </Grid>
 </Page>

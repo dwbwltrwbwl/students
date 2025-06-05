@@ -24,6 +24,32 @@ using SystemPath = System.IO.Path;
 
 namespace students.Pages
 {
+    public class RecommendationEngine
+    {
+        public string GenerateRecommendations(double totalAverage, double attendancePercent)
+        {
+            StringBuilder sb = new StringBuilder();
+            if (totalAverage < 3.0)
+            {
+                sb.AppendLine("⚠️ Студент в группе риска! Рекомендуем:");
+                sb.AppendLine("- Организовать дополнительные консультации");
+                sb.AppendLine("- Проверить наличие задолженностей");
+            }
+            else if (totalAverage > 4.5)
+            {
+                sb.AppendLine("⭐ Одаренный студент! Предложите:");
+                sb.AppendLine("- Участие в олимпиадах");
+                sb.AppendLine("- Углубленные материалы по предмету");
+            }
+            if (attendancePercent < 70)
+            {
+                sb.AppendLine($"\n⏱ Низкая посещаемость ({attendancePercent:0}%):");
+                sb.AppendLine("- Обсудить причины отсутствий");
+                sb.AppendLine("- Ввести балльную систему за посещение");
+            }
+            return sb.Length > 0 ? sb.ToString() : "✅ Студент показывает стабильные результаты. Рекомендации не требуются";
+        }
+    }
     public partial class GeneratedReport : System.Windows.Controls.Page
     {
         private readonly ApplicationData.students _student;
@@ -41,12 +67,9 @@ namespace students.Pages
             {
                 tbStudentName.Text = _student.FullName;
                 tbGroupInfo.Text = $"Группа: {_student.groups?.group_number}";
-
-                // Обработка оценок
                 var gradesList = _student.attendance
                     .Where(a => a.grade.HasValue)
                     .ToList();
-
                 if (gradesList.Any())
                 {
                     var gradesBySubject = gradesList
@@ -58,7 +81,6 @@ namespace students.Pages
                             Average = g.Average(x => x.grade.Value).ToString("0.00")
                         })
                         .ToList();
-
                     lvGrades.ItemsSource = gradesBySubject;
                     double totalAverage = gradesList.Average(a => a.grade.Value);
                     tbTotalAverage.Text = totalAverage.ToString("0.00");
@@ -68,8 +90,6 @@ namespace students.Pages
                     lvGrades.ItemsSource = null;
                     tbTotalAverage.Text = "нет оценок";
                 }
-
-                // Обработка посещаемости с учетом опозданий
                 var attendanceList = _student.attendance.ToList();
                 if (attendanceList.Any())
                 {
@@ -78,14 +98,11 @@ namespace students.Pages
                         {
                             Date = a.date,
                             Subject = a.subjects?.subject_name ?? "Без названия",
-                            VisitStatus = a.id_visit, // Сохраняем исходный статус
-                            IsPresent = a.id_visit == 1 || a.id_visit == 3 // Присутствие или опоздание
+                            VisitStatus = a.id_visit,
+                            IsPresent = a.id_visit == 1 || a.id_visit == 3
                         })
                         .ToList();
-
                     lvAttendance.ItemsSource = attendanceDisplayList;
-
-                    // Подсчет присутствий (включая опоздания)
                     int presentCount = attendanceList.Count(a => a.id_visit == 1 || a.id_visit == 3);
                     double percent = (double)presentCount / attendanceList.Count * 100;
                     tbAttendancePercent.Text = $"{percent:0}%";
@@ -95,6 +112,20 @@ namespace students.Pages
                     lvAttendance.ItemsSource = null;
                     tbAttendancePercent.Text = "100%";
                 }
+                double totalAverageValue = 0;
+                if (gradesList.Any())
+                {
+                    totalAverageValue = gradesList.Average(a => a.grade.Value);
+                }
+                double attendancePercentValue = 100;
+                if (attendanceList.Any())
+                {
+                    int presentCount = attendanceList.Count(a => a.id_visit == 1 || a.id_visit == 3);
+                    attendancePercentValue = (double)presentCount / attendanceList.Count * 100;
+                }
+                var engine = new RecommendationEngine();
+                string recommendations = engine.GenerateRecommendations(totalAverageValue, attendancePercentValue);
+                tbRecommendations.Text = recommendations;
             }
             catch (Exception ex)
             {

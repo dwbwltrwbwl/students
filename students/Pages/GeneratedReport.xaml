@@ -13,6 +13,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Border Grid.Row="0" Padding="10">
@@ -92,7 +93,22 @@
             </TabItem>
         </TabControl>
 
-        <Grid Grid.Row="2" Margin="10">
+        <GroupBox Grid.Row="2" Header="Рекомендации" Margin="10,5" Padding="5"
+          BorderBrush="#FF5427D4" Foreground="#FF5427D4"
+          FontFamily="Gill Sans MT" FontSize="14" FontWeight="Bold">
+            <TextBox x:Name="tbRecommendations" 
+             IsReadOnly="True" 
+             TextWrapping="Wrap"
+             VerticalScrollBarVisibility="Auto"
+             BorderThickness="0"
+             Background="Transparent"
+             FontFamily="Gill Sans MT"
+             FontSize="14"
+             Foreground="#FF5427D4"
+             Padding="5"/>
+        </GroupBox>
+
+        <Grid Grid.Row="3" Margin="10">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="Auto"/>

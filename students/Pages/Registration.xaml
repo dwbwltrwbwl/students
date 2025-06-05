@@ -34,7 +34,9 @@
                              Width="200" 
                              Height="22" 
                              FontSize="16"
-                             Margin="0,0,0,5">
+                             Margin="0,0,0,5" MaxLength="50"
+                             PreviewTextInput="TextBox_PreviewTextInput" 
+                             DataObject.Pasting="TextBox_Pasting">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="Template">
@@ -64,7 +66,9 @@
                              Width="200" 
                              Height="22" 
                              FontSize="16"
-                             Margin="0,0,0,5">
+                             Margin="0,0,0,5" MaxLength="50"
+                             PreviewTextInput="TextBox_PreviewTextInput" 
+                             DataObject.Pasting="TextBox_Pasting">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="Template">
@@ -93,7 +97,9 @@
                          Width="200" 
                          Height="22" 
                          FontSize="16"
-                         Margin="0,0,0,5">
+                         Margin="0,0,0,5" MaxLength="50"
+                         PreviewTextInput="TextBox_PreviewTextInput" 
+                         DataObject.Pasting="TextBox_Pasting">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="Template">
@@ -118,18 +124,19 @@
                                FontSize="14" 
                                FontFamily="Gill Sans Ultra Bold"
                                Margin="0,0,0,5"/>
-
                     <TextBox x:Name="TBEmail" 
-                             Width="200" 
-                             Height="22" 
-                             FontSize="16"
-                             Margin="0,0,0,5">
+                            Width="200" 
+                            Height="22" 
+                            FontSize="16"
+                            Margin="0,0,0,5" MaxLength="100"
+                            LostFocus="TBEmail_LostFocus">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="TextBox">
-                                            <Border Background="White" 
+                                            <Border x:Name="BorderElement" 
+                                                    Background="White" 
                                                     BorderBrush="#FF5427D4" 
                                                     BorderThickness="1" 
                                                     CornerRadius="10">
@@ -142,7 +149,12 @@
                         </TextBox.Style>
                     </TextBox>
 
-                    
+                    <TextBlock x:Name="EmailErrorText"
+                       Text="Некорректный формат email"
+                       Foreground="Red"
+                       FontSize="12"
+                       Margin="5,0,0,5"
+                       Visibility="Collapsed"/>
                 </StackPanel>
 
                 <StackPanel Grid.Column="2">
@@ -154,16 +166,20 @@
                         Margin="0,0,0,5"/>
 
                     <TextBox x:Name="TBTelephone" 
-                         Width="200" 
-                         Height="22" 
-                         FontSize="16"
-                         Margin="0,0,0,5">
+                             Width="200" 
+                             Height="22" 
+                             FontSize="16"
+                             Margin="0,0,0,5"
+                             PreviewTextInput="TBTelephone_PreviewTextInput"
+                             TextChanged="TBTelephone_TextChanged"
+                             LostFocus="TBTelephone_LostFocus">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="TextBox">
-                                            <Border Background="White" 
+                                            <Border x:Name="BorderElement"
+                                Background="White" 
                                 BorderBrush="#FF5427D4" 
                                 BorderThickness="1" 
                                 CornerRadius="10">
@@ -185,7 +201,7 @@
                     <TextBox x:Name="TBLogin" 
                              Width="200" 
                              Height="22" 
-                             FontSize="16"
+                             FontSize="16" MaxLength="50"
                              Margin="0,0,0,5">
                         <TextBox.Style>
                             <Style TargetType="TextBox">
@@ -215,7 +231,7 @@
                     <TextBox x:Name="TBPassword" 
          Width="200" 
          Height="22" 
-         FontSize="16"
+         FontSize="16" MaxLength="50"
          Margin="0,0,0,5">
                         <TextBox.Style>
                             <Style TargetType="{x:Type TextBox}">
@@ -244,7 +260,7 @@
                     <PasswordBox x:Name="PBpassword" 
              Width="200" 
              Height="22" 
-             FontSize="16"
+             FontSize="16" MaxLength="50"
              Margin="0,0,0,5">
                         <PasswordBox.Style>
                             <Style TargetType="PasswordBox">

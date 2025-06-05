@@ -167,6 +167,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Pages\DataOutputUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\GeneratedReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -189,6 +193,9 @@
     </Compile>
     <Compile Include="Pages\DataOutput.xaml.cs">
       <DependentUpon>DataOutput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\DataOutputUser.xaml.cs">
+      <DependentUpon>DataOutputUser.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\GeneratedReport.xaml.cs">
       <DependentUpon>GeneratedReport.xaml</DependentUpon>

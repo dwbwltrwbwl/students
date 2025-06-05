@@ -120,12 +120,10 @@ namespace students.Pages
                 formattedPhone += "-" + digitsOnly.Substring(7, Math.Min(2, digitsOnly.Length - 7));
             if (digitsOnly.Length > 9)
                 formattedPhone += "-" + digitsOnly.Substring(9, Math.Min(2, digitsOnly.Length - 9));
-
-            TBTelephone.TextChanged -= TBTelephone_TextChanged; // Отключаем обработчик
-            TBTelephone.Text = formattedPhone; // Устанавливаем отформатированный текст
-            TBTelephone.CaretIndex = formattedPhone.Length; // Устанавливаем курсор в конец
-            TBTelephone.TextChanged += TBTelephone_TextChanged; // Включаем обработчик обратно
-
+            TBTelephone.TextChanged -= TBTelephone_TextChanged;
+            TBTelephone.Text = formattedPhone;
+            TBTelephone.CaretIndex = formattedPhone.Length;
+            TBTelephone.TextChanged += TBTelephone_TextChanged;
             UpdatePhoneValidationIndicator();
         }
 
@@ -179,7 +177,6 @@ namespace students.Pages
             string passwordRepeat = PBpassword.Password;
             if (string.IsNullOrWhiteSpace(first_name) ||
                 string.IsNullOrWhiteSpace(last_name) ||
-                string.IsNullOrWhiteSpace(middle_name) ||
                 string.IsNullOrWhiteSpace(email) ||
                 string.IsNullOrWhiteSpace(phone) ||
                 string.IsNullOrWhiteSpace(login) ||
@@ -217,7 +214,7 @@ namespace students.Pages
             try
             {
                 var selectedQualification = (qualifications)CBQualification.SelectedItem;
-                var teacherRole = AppConnect.model01.roles.FirstOrDefault(r => r.id_role == 1);
+                var teacherRole = AppConnect.model01.roles.FirstOrDefault(r => r.id_role == 2);
                 if (teacherRole == null)
                 {
                     MessageBox.Show("Роль преподавателя не найдена в системе!", "Ошибка",

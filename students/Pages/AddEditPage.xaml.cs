@@ -48,7 +48,7 @@ namespace students.Pages
                 LoadGroups();
                 LoadSubjects();
                 LoadVisits();
-
+                DPDate.DisplayDateEnd = DateTime.Today;
                 if (isEditMode)
                 {
                     Title = "Редактирование записи";
@@ -57,7 +57,7 @@ namespace students.Pages
                     CBSubject.SelectedValue = currentAttendance.id_subject;
                     DPDate.SelectedDate = currentAttendance.date;
                     CBVisit.SelectedValue = currentAttendance.id_visit;
-                    TBGrade.Text = currentAttendance.grade.ToString();
+                    CBGrade.SelectedValue = currentAttendance.grade.ToString();
                 }
                 else
                 {
@@ -67,13 +67,26 @@ namespace students.Pages
                     CBSubject.SelectedIndex = -1;
                     DPDate.SelectedDate = DateTime.Today;
                     CBVisit.SelectedIndex = 0;
-                    TBGrade.Text = "";
+                    CBGrade.SelectedIndex = -1;
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"Ошибка инициализации: {ex.Message}", "Ошибка",
                                 MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+        private void DPDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (DPDate.SelectedDate.HasValue)
+            {
+                DateTime selectedDate = DPDate.SelectedDate.Value;
+                if (selectedDate > DateTime.Today)
+                {
+                    MessageBox.Show("Вы не можете выбрать будущую дату.", "Ошибка",
+                                    MessageBoxButton.OK, MessageBoxImage.Error);
+                    DPDate.SelectedDate = DateTime.Today;
+                }
             }
         }
         private void LoadGroups()
@@ -151,7 +164,6 @@ namespace students.Pages
                                 MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void LoadVisits()
         {
             try
@@ -167,7 +179,6 @@ namespace students.Pages
                                 MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
         private void ButtonExit_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
@@ -181,12 +192,14 @@ namespace students.Pages
                     CBSubject.SelectedItem == null ||
                     DPDate.SelectedDate == null ||
                     CBVisit.SelectedItem == null ||
-                    string.IsNullOrWhiteSpace(TBGrade.Text))
+                    CBGrade.SelectedItem == null)
                 {
                     MessageBox.Show("Пожалуйста, заполните все поля", "Ошибка",
                                     MessageBoxButton.OK, MessageBoxImage.Warning);
                     return;
                 }
+
+                int selectedGrade = int.Parse(((ComboBoxItem)CBGrade.SelectedItem).Content.ToString());
 
                 if (isEditMode)
                 {
@@ -194,7 +207,7 @@ namespace students.Pages
                     currentAttendance.id_subject = (int)CBSubject.SelectedValue;
                     currentAttendance.date = DPDate.SelectedDate.Value;
                     currentAttendance.id_visit = (int)CBVisit.SelectedValue;
-                    currentAttendance.grade = int.Parse(TBGrade.Text);
+                    currentAttendance.grade = selectedGrade;
                 }
                 else
                 {
@@ -204,7 +217,7 @@ namespace students.Pages
                         id_subject = (int)CBSubject.SelectedValue,
                         date = DPDate.SelectedDate.Value,
                         id_visit = (int)CBVisit.SelectedValue,
-                        grade = int.Parse(TBGrade.Text)
+                        grade = selectedGrade
                     };
                     AppConnect.model01.attendance.Add(newAttendance);
                 }

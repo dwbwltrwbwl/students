@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:students.Pages"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="800"
       Title="AddEditPage">
@@ -213,7 +214,7 @@
                        FontSize="14"
                        Width="120"
                        VerticalAlignment="Center"/>
-                <DatePicker x:Name="DPDate" Width="220" Height="22" Style="{StaticResource StyledDatePicker}"/>
+                <DatePicker x:Name="DPDate" Width="220" Height="22" Style="{StaticResource StyledDatePicker}" DisplayDateEnd="{x:Static sys:DateTime.Today}" SelectedDateChanged="DPDate_SelectedDateChanged"/>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
@@ -229,14 +230,21 @@
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                 <TextBlock Text="Оценка:" 
-                       Foreground="#FF5427D4" 
-                       FontWeight="Bold" 
-                       FontFamily="Gill Sans Ultra Bold" 
-                       FontSize="14"
-                       Width="120"
-                       VerticalAlignment="Center"/>
-                <TextBox x:Name="TBGrade" Width="220" Height="22" TextWrapping="Wrap" Style="{StaticResource StyledTextBox}"/>
+               Foreground="#FF5427D4" 
+               FontWeight="Bold" 
+               FontFamily="Gill Sans Ultra Bold" 
+               FontSize="14"
+               Width="120"
+               VerticalAlignment="Center"/>
+                <ComboBox x:Name="CBGrade" Width="220" Height="22" VerticalAlignment="Center" 
+              Style="{StaticResource StyledComboBox}">
+                    <ComboBoxItem Content="2" />
+                    <ComboBoxItem Content="3" />
+                    <ComboBoxItem Content="4" />
+                    <ComboBoxItem Content="5" />
+                </ComboBox>
             </StackPanel>
+
             <Button x:Name="ButtonSave" 
                     Width="200" Margin="0,10,0,0"
                     Height="30" 

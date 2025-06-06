@@ -21,6 +21,7 @@ namespace students.Pages
     /// </summary>
     public partial class AddEditPage : Page
     {
+        public event Action AttendanceUpdated;
         private attendance currentAttendance;
         private bool isEditMode;
         public AddEditPage()
@@ -222,6 +223,7 @@ namespace students.Pages
                     AppConnect.model01.attendance.Add(newAttendance);
                 }
                 AppConnect.model01.SaveChanges();
+                AttendanceUpdated?.Invoke();
                 NavigationService.GoBack();
             }
             catch (Exception ex)

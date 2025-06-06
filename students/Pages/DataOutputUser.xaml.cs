@@ -32,6 +32,13 @@ namespace students.Pages
             filteredAttendance = allAttendance;
             listAttendance.ItemsSource = filteredAttendance;
             LoadGroups();
+            LoadAttendance();
+        }
+        private void LoadAttendance()
+        {
+            allAttendance = AppConnect.model01.attendance.ToList();
+            filteredAttendance = allAttendance;
+            listAttendance.ItemsSource = filteredAttendance;
         }
         private void LoadGroups()
         {
@@ -129,8 +136,11 @@ namespace students.Pages
         }
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService.Navigate(new AddEditPage());
+            var addEditPage = new AddEditPage();
+            addEditPage.AttendanceUpdated += LoadAttendance;
+            NavigationService.Navigate(addEditPage);
         }
+
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
             if (listAttendance.SelectedItem == null)
@@ -141,7 +151,9 @@ namespace students.Pages
                 return;
             }
             selectedAttendance = listAttendance.SelectedItem as attendance;
-            NavigationService.Navigate(new AddEditPage(selectedAttendance));
+            var addEditPage = new AddEditPage(selectedAttendance);
+            addEditPage.AttendanceUpdated += LoadAttendance;
+            NavigationService.Navigate(addEditPage);
         }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
